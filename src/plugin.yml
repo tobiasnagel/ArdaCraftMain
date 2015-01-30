@@ -1,0 +1,51 @@
+name: ArdaCraftMain
+version: 1.0
+author: Tobi
+main: me.tobi.acmain.Plugin
+commands:
+  register:
+    usage: /register <Player> <Rasse> <Charakter>
+    description: ArdaCraft Team Befehl
+  checkinaktive:
+    usage: /checkinaktive
+    description: ArdaCraft Team Befehl
+  request:
+    usage: /request <Rasse> <Charakter>
+    description: Eine Charakteranfrage senden
+  spawn:
+    usage: /spawn
+    description: ArdaCraft Team Befehl
+  regeln:
+    usage: /regeln
+    description: Zeigt dir die Serverregeln
+    aliases: [rules, rg, regln, ruls]
+  gut:
+    usage: /gut
+    description: Zeigt dir alle guten Rassen
+  boese:
+    usage: /boese
+    description: Zeigt dir alle boesen Rassen
+  cmute:
+    usage: /cmute
+    description: ArdaCraft Team Befehl
+  addwarp:
+    usage: /addwarp <inbuild_[ID]> <Stadtname>
+    description: ArdaCraft Team Befehl
+  player:
+    usage: /player <Player>
+    description: ArdaCraft Team Befehl
+  mute:
+    usage: /mute <Player>
+    description: ArdaCraft Team Befehl
+  bigjump:
+    usage: /bigjump
+    description: ArdaCraft Team Befehl
+  open:
+    usage: /open
+    description: ArdaCraft Team Befehl
+  hide:
+    usage: /hide
+    description: ArdaCraft Team Befehl
+  stadt:
+    usage: /stadt
+    description: Zeigt das Staedte Menue
