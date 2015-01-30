@@ -3,6 +3,7 @@ package me.tobi.acmain.commands;
 import java.util.Arrays;
 
 import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Methoden;
 import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Msg;
 import me.tobi.acmain.stadt.Stadt;
@@ -27,7 +28,7 @@ public class CmdStadt implements CommandExecutor {
 			for(Stadt s : Stadt.values()) {
 				ItemStack i = new ItemStack(Material.BANNER,1, (short)11);
 				ItemMeta im = i.getItemMeta();
-				im.setDisplayName(s.getName());
+				im.setDisplayName(Methoden.normalize(s.toString().toLowerCase()));
 				String gesinnung = s.isGood()?"Gut":"Böse";
 				im.setLore(Arrays.asList("Gründer: " + s.getOwner(), "Gesinnung: " + gesinnung));
 				i.setItemMeta(im);
