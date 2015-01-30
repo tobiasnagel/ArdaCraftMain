@@ -24,18 +24,17 @@ public class CraftLogger {
 	public static final String PREFIX_WARN = "§b§l[§a§lArdaCraft§b§l]§c ";
 	public static final String PREFIX_SEVERE = "§b§l[§a§lArdaCraft§b§l]§4 ";
 	
-	@SuppressWarnings("deprecation")
 	public void logToChat(Level level, String msg) {
 		if(level == Level.INFO) {
-			for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+			for(Player p : ArdaCraft.getOnlinePlayers()) {
 				p.sendMessage(PREFIX_INFO + msg);
 			}
 		}else if(level == Level.WARN) {
-			for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+			for(Player p : ArdaCraft.getOnlinePlayers()) {
 				p.sendMessage(PREFIX_WARN + msg);
 			}
 		}else if(level == Level.SEVERE) {
-			for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+			for(Player p : ArdaCraft.getOnlinePlayers()) {
 				p.sendMessage(PREFIX_SEVERE + msg);
 			}
 		}
@@ -96,9 +95,8 @@ public class CraftLogger {
 		((CraftPlayer) p).getHandle().playerConnection.sendPacket(packet);
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void chatJSON(Message[] msg) {
-		for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+		for(Player p : ArdaCraft.getOnlinePlayers()) {
 			FancyMessage fmsg = new FancyMessage("");
 			for(Message m : msg) {
 				fmsg.then(m.getText() + "");

@@ -76,12 +76,11 @@ public class EvtHandler implements Listener{
 	public HashMap<String, Long> cooldowns = new HashMap<String, Long>();	
 	//==============================================
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
 		ArdaCraft.getCraftLogger().logToChat(Level.INFO, Msg.EVENT_JOIN_WELCOME, p);
-		ArdaCraft.getCraftLogger().logToChat(Level.INFO, "§b§lZurzeit sind §a§l" + ArdaCraft.getACServer().getOnlinePlayers().length + "§b§l von §c§l" + ArdaCraft.getACServer().getMaxPlayers() + "§b§l Spielern online", p);
+		ArdaCraft.getCraftLogger().logToChat(Level.INFO, "§b§lZurzeit sind §a§l" + ArdaCraft.getOnlinePlayers().length + "§b§l von §c§l" + ArdaCraft.getACServer().getMaxPlayers() + "§b§l Spielern online", p);
 		p.sendMessage("");
 		p.sendMessage("");
 		event.setJoinMessage("");
@@ -136,8 +135,6 @@ public class EvtHandler implements Listener{
 		}
 	}
 	
-	
-	
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {		
@@ -147,18 +144,18 @@ public class EvtHandler implements Listener{
 			int z = event.getClickedBlock().getLocation().getBlockZ();
 			if(event.getPlayer().getItemInHand().getType() == Material.LAVA_BUCKET||
 					event.getPlayer().getItemInHand().getType() == Material.LAVA) { //TODO not clickeed block but item in hand
-				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cLAVA §6at §c" + x + " " + y + " " + z);
 				}
 			}
 			if(event.getPlayer().getItemInHand().getType() == Material.FLINT_AND_STEEL) {
-				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cFIRE §6at §c" + x + " " + y + " " + z);
 				}
 			}
 			if(event.getPlayer().getItemInHand().getType() == Material.WATER_BUCKET ||
 					event.getPlayer().getItemInHand().getType() == Material.WATER) {
-				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cWATER §6at §c" + x + " " + y + " " + z);
 				}
 			}
@@ -298,7 +295,7 @@ public class EvtHandler implements Listener{
 					if(event.getEntity() instanceof Arrow){
 						if(speerShooter.contains(event.getEntity().getShooter())){
 							event.getEntity().remove();
-							speerShooter.remove((Player)event.getEntity());
+							speerShooter.remove((Player)event.getEntity().getShooter());
 						}
 					}					
 				}
@@ -316,7 +313,7 @@ public class EvtHandler implements Listener{
 			WitherSkull skull = (WitherSkull) event.getEntity();
 			
 			if(((Projectile)skull).getShooter().getType() == EntityType.PLAYER) {
-				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getOnlinePlayers()) {
 					if(p.getLocation().distance(skull.getLocation()) < 10) {
 						ItemType stab = ItemType.STAB;
 						p.damage(stab.getDamage() * Methoden.getDamageReduced(p));

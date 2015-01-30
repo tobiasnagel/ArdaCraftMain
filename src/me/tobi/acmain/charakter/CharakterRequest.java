@@ -64,9 +64,8 @@ public class CharakterRequest {
 		ArdaCraft.getACServer().dispatchCommand(ArdaCraft.getACServer().getConsoleSender(), "pex user " + requester.getName() + " group set " + rasse.toString().toLowerCase());
 	}
 	
-	@SuppressWarnings("deprecation")
 	public void sendToOperators() {
-		for(final Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+		for(final Player p : ArdaCraft.getOnlinePlayers()) {
 			if(p.isOp()){
 				String s = ("§4=====================================================");
 				Message m1 = new Message("§6[§aCharakterrequest§c " + requester.getName() + "§6]§b  §d(§6[§a" + Methoden.normalize(rasse.toString().toLowerCase()) + "§6] §c" + charakter + "§d)§r ");

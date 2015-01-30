@@ -18,13 +18,12 @@ public class Scheduler {
 	public void start() {
 		ArdaCraft.getACServer().getScheduler().scheduleSyncRepeatingTask(ArdaCraft.getPlugin(), new Runnable() {
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 				long time = ArdaCraft.getACServer().getWorld("world").getTime();
 				if(time > 13000 && time < 23000) {
 					//night
-					for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+					for(Player p : ArdaCraft.getOnlinePlayers()) {
 						if(Methoden.getRasse(p) == Rasse.ORK) {
 							p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0));
 							p.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
@@ -32,7 +31,7 @@ public class Scheduler {
 					}
 				}else {
 					//day
-					for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+					for(Player p : ArdaCraft.getOnlinePlayers()) {
 						if(Methoden.getRasse(p) == Rasse.ORK) {
 							p.removePotionEffect(PotionEffectType.NIGHT_VISION);
 							p.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);

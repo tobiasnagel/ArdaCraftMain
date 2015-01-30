@@ -10,14 +10,14 @@ import org.bukkit.entity.Player;
 
 public class CmdList implements CommandExecutor {
 
-	@SuppressWarnings({ "deprecation", "unused" })
+	@SuppressWarnings("unused")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		for(Rasse r : Rasse.values()) {
 			String online = "";
 			online += r.getName();
 		}
-		for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+		for(Player p : ArdaCraft.getOnlinePlayers()) {
 			
 		}
 		return true;

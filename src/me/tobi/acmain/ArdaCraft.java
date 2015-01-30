@@ -109,6 +109,11 @@ public class ArdaCraft extends JavaPlugin{
 		return config;
 	}
 	
+	@SuppressWarnings("deprecation")
+	public static Player[] getOnlinePlayers() {
+		return ArdaCraft.getACServer().getOnlinePlayers();
+	}
+	
 	
 	
 }
