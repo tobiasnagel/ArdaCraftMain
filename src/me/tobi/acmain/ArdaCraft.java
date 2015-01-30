@@ -75,6 +75,7 @@ public class ArdaCraft extends JavaPlugin{
 	}
 	
 	public static List<Player> muted = new ArrayList<Player>();
+	public static List<Player> colldown_thief = new ArrayList<Player>();
 
 	private void registerFiles() {
 		this.saveDefaultConfig();
