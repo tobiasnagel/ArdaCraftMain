@@ -12,3 +12,5 @@
 hs_err_pid*
 bin/
 .settings/org.eclipse.jdt.core.prefs
+.classpath
+.project
