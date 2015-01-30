@@ -1,2 +1,7 @@
 # ArdaCraftMain
-Main Plugin for the ArdaCraft Minecraft server
+Hauptplugin für den ArdaCraft Minecraftserver
+
+Dependencies:
+- BukkitAPI
+- Essentials
+- PermissionsEx
