@@ -1,6 +1,7 @@
 package me.tobi.acmain;
 
 import java.util.LinkedHashMap;
+import java.util.Random;
 
 import me.tobi.acmain.rasse.Rasse;
 import me.tobi.acmain.stadt.Stadt;
@@ -218,4 +219,39 @@ public class Methoden {
 		warps.add(new Stadt("Wetterspitze", new Location(w, -1911, 79, 364), "Cubecrafter09", true)); //inbuild_WS
 		return warps;
 	}*/
+	
+	public static Object pickRandomOf(Object[] obj) {
+		Random rnd = new Random();
+		if(obj.length == 0) {
+			return null;
+		}
+		return obj[rnd.nextInt(obj.length)];
+	}
+	
+	public static Player[] getPlayersAround(Location loc, int radius) {
+		int counter = 0;
+		for(Player pl : ArdaCraft.getOnlinePlayers()) {
+			if(loc.getWorld() == pl.getWorld()) {
+				double dist = loc.distance(pl.getLocation());
+				if(dist < 10){
+					if(!(dist < 1))
+					counter += 1;
+				}
+			}
+		}
+		int c2 = 0;
+		Player[] pa = new Player[counter];
+		for(Player pl : ArdaCraft.getOnlinePlayers()) {
+			if(loc.getWorld() == pl.getWorld()) {
+				double dist = loc.distance(pl.getLocation());
+				if(dist < 10){
+					if(!(dist < 1)) {
+						pa[c2] = pl;
+						c2 += 1;
+					}
+				}
+			}
+		}
+		return pa;
+	}
 }
