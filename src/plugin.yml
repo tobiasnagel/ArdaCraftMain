@@ -1,7 +1,7 @@
 name: ArdaCraftMain
 version: 1.0
 author: Tobi
-main: me.tobi.acmain.Plugin
+main: me.tobi.acmain.ArdaCraft
 commands:
   register:
     usage: /register <Player> <Rasse> <Charakter>
@@ -49,3 +49,6 @@ commands:
   stadt:
     usage: /stadt
     description: Zeigt das Staedte Menue
+  thief:
+    usage: /thief
+    description: Hobbit Befehl
