@@ -8,8 +8,15 @@ public class ItemHandler {
 		
 	}
 	
-	public void registerItems() {
-		
+	public static void registerItems() {
+		Rezepte.bogen(" ES", "D S", " ES");
+		Rezepte.axt("EEE", "EDE", " I ");
+		Rezepte.dolch("   ", " D ", " I ");
+		Rezepte.stab(" D ", " S ", " S ");
+		Rezepte.ring("GGG", "GDG", "GGG");
+		Rezepte.schwert(" G ", " G ", " D ");
+		Rezepte.armbrust("BEO", "ED ", "E  ");
+		Rezepte.speer("  O", " I ", "I  ");
 	}
 	
 	public static boolean isSpecialItem(ItemStack i) {

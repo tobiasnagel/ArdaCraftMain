@@ -19,7 +19,7 @@ import me.tobi.acmain.commands.CmdRequest;
 import me.tobi.acmain.commands.CmdSpawn;
 import me.tobi.acmain.commands.CmdStadt;
 import me.tobi.acmain.events.EvtHandler;
-import me.tobi.acmain.items.Rezepte;
+import me.tobi.acmain.items.ItemHandler;
 import me.tobi.acmain.message.CraftLogger;
 import me.tobi.acmain.message.Msg;
 
@@ -43,7 +43,7 @@ public class ArdaCraft extends JavaPlugin{
 	
 	@Override
 	public void onEnable() {
-		registerRecipes();
+		ItemHandler.registerItems();
 		registerFiles();
 		//ControlPointManager.init();
 		//ControlPointManager.startScheduler();
@@ -73,17 +73,6 @@ public class ArdaCraft extends JavaPlugin{
 	}
 	
 	public static List<Player> muted = new ArrayList<Player>();
-	
-	private void registerRecipes() {
-		Rezepte.bogen(" ES", "D S", " ES");
-		Rezepte.axt("EEE", "EDE", " I ");
-		Rezepte.dolch("   ", " D ", " I ");
-		Rezepte.stab(" D ", " S ", " S ");
-		Rezepte.ring("GGG", "GDG", "GGG");
-		Rezepte.schwert(" G ", " G ", " D ");
-		Rezepte.armbrust("BEO", "ED ", "E  ");
-		Rezepte.speer("  O", " I ", "I  ");
-	}
 
 	private void registerFiles() {
 		this.saveDefaultConfig();
