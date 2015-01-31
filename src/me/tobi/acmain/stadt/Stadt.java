@@ -176,6 +176,15 @@ public enum Stadt {
 		public String getOwner() {return "Lord_Adrian";}
 		@Override
 		public boolean isGood() {return true;}
+	},NARGOTHROND{
+		@Override
+		public String getName() {return "Nargothrond";}
+		@Override
+		public Location getLoc() {return null;}
+		@Override
+		public String getOwner() {return "Paul_und_Max";}
+		@Override
+		public boolean isGood() {return true;}
 	}, OSGILIATH{
 		@Override
 		public String getName() {return "Osgiliath";}
