@@ -39,7 +39,7 @@ public class CmdThief implements CommandExecutor {
 						}
 						
 					}
-					if(rnd.nextInt(2) == 1) { //TODO add verzögerung //TODO nicht gegenseitig bestehlen
+					if(rnd.nextInt(2) == 1) {
 						//Diebstahl geglückt
 						item = (ItemStack)Methoden.pickRandomOf(stolen.getInventory().getContents());
 						String s = "";
