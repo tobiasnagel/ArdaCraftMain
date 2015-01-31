@@ -89,6 +89,15 @@ public enum Stadt {
 		public String getOwner() {return "Lordefe";}
 		@Override
 		public boolean isGood() {return true;}
+	}, FORNOST{
+		@Override
+		public String getName() {return "Fornost";}
+		@Override
+		public Location getLoc() {return new Location(Stadt.w, -239, 70, 1354);}
+		@Override
+		public String getOwner() {return "_SlimPlays_";}
+		@Override
+		public boolean isGood() {return true;}
 	}, GALTREV{
 		@Override
 		public String getName() {return "Galtrev";}
