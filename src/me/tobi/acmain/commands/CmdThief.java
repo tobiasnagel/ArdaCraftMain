@@ -22,19 +22,25 @@ public class CmdThief implements CommandExecutor {
 		if(sender != null) {
 			final Player p = (Player)sender;
 			if(Methoden.getRasse(p) == Rasse.HOBBIT) {
+				boolean success = false;
+				ItemStack item = new ItemStack(Material.AIR);
 				if(!ArdaCraft.colldown_thief.contains(p)) {
 					Random rnd = new Random();
 					Object o = Methoden.pickRandomOf(Methoden.getPlayersAround(p.getLocation(), 10));
-					Player stolen;
+					final Player stolen;
 					if(o == null){
 						p.sendMessage("§cEs ist kein Spieler nah genug um ihn zu beklauen!");
 						return true;
 					}else {
 						stolen = (Player)o;
+						if(Methoden.getRasse(stolen) == Rasse.HOBBIT) {
+							p.sendMessage("Man bestiehlt doch keine anderen Hobbits!");
+							return true;
+						}
+						
 					}
-					if(rnd.nextInt(2) == 1) {
+					if(rnd.nextInt(2) == 1) { //TODO add verzögerung //TODO nicht gegenseitig bestehlen
 						//Diebstahl geglückt
-						ItemStack item = new ItemStack(Material.AIR);
 						item = (ItemStack)Methoden.pickRandomOf(stolen.getInventory().getContents());
 						String s = "";
 						try{
@@ -53,22 +59,24 @@ public class CmdThief implements CommandExecutor {
 						}
 						stolen.getInventory().remove(item);
 						p.getInventory().addItem(item);
-						stolen.sendMessage("§c" + p.getDisplayName() + "§c hat dir " + Methoden.normalize(item.getType().toString().toLowerCase()) + "§c geklaut!");
+						success = true;						
 						p.sendMessage("§cDu hast " + stolen.getDisplayName() + " " + Methoden.normalize(item.getType().toString().toLowerCase()) + "§c geklaut!");
 						ArdaCraft.colldown_thief.add(p);
-						ArdaCraft.getACServer().getScheduler().scheduleSyncDelayedTask(ArdaCraft.getPlugin(), new Runnable() {
-
-							@Override
-							public void run() {
-								ArdaCraft.colldown_thief.remove(p);
-							}
-							
-						}, 6000);
-						
-					}else {
-						stolen.sendMessage("§c" + p.getDisplayName() + "§c wollte dich bestehlen! Zum Glück hast du " + p.getDisplayName() + "§c rechtzeitig bemerkt!");
+					}else {						
 						p.sendMessage("§cMist! Du wurdest erwischt! Hau besser schnell ab!");
 					}
+					final boolean suc = success;
+					final ItemStack it = item;
+					ArdaCraft.getACServer().getScheduler().scheduleSyncDelayedTask(ArdaCraft.getPlugin(), new Runnable() {
+						@Override
+						public void run() {
+							ArdaCraft.colldown_thief.remove(p);
+							if(suc) 
+								stolen.sendMessage("§c" + p.getDisplayName() + "§c hat dir " + Methoden.normalize(it.getType().toString().toLowerCase()) + "§c geklaut!");
+							if(!suc)
+								stolen.sendMessage("§c" + p.getDisplayName() + "§c wollte dich bestehlen! Zum Glück hast du " + p.getDisplayName() + "§c rechtzeitig bemerkt!");
+						}
+					}, 6000);
 				}else {
 					ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Bitte warte noch bevor du diesen Befehl nochmal anwendest!", p);
 				}
