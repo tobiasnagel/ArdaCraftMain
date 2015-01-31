@@ -1,15 +1,18 @@
 package me.tobi.acmain.stadt;
 
+import me.tobi.acmain.ArdaCraft;
+
 import org.bukkit.Location;
+import org.bukkit.World;
 
 
-public enum Stadt {
+public enum Stadt {	
 	
 	BREE{
 		@Override
 		public String getName() {return "Bree";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -1167, 72, 15);}
 		@Override
 		public String getOwner() {return "Nanseneut";}
 		@Override
@@ -18,7 +21,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Bruchtal";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 1685, 80, 820);}
 		@Override
 		public String getOwner() {return "chrito_miner";}
 		@Override
@@ -27,7 +30,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Daina";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -623, 68, 1135);}
 		@Override
 		public String getOwner() {return "NoobigLP04";}
 		@Override
@@ -36,7 +39,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Dol Amroth";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -656, 67, 778);}
 		@Override
 		public String getOwner() {return "Lord_Adrian";}
 		@Override
@@ -45,7 +48,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Dol Guldur";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 1430, 120, 4250);}
 		@Override
 		public String getOwner() {return "Nanseneut";}
 		@Override
@@ -54,7 +57,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Doriath";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 969, 64, 3280);}
 		@Override
 		public String getOwner() {return "chrito_miner";}
 		@Override
@@ -63,7 +66,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Edoras";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -472, 70, 395);}
 		@Override
 		public String getOwner() {return "Lord_Adrian";}
 		@Override
@@ -72,7 +75,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Elbias";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 1223, 85, 3432);}
 		@Override
 		public String getOwner() {return "goghlo";}
 		@Override
@@ -81,7 +84,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Erebor";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 381, 94, 3341);}
 		@Override
 		public String getOwner() {return "Lordefe";}
 		@Override
@@ -90,7 +93,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Galtrev";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 157, 65, 644);}
 		@Override
 		public String getOwner() {return "pirchl";}
 		@Override
@@ -99,7 +102,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Gondolin";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 1146, 63, 4437);}
 		@Override
 		public String getOwner() {return "carsten97";}
 		@Override
@@ -108,7 +111,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Gundabad";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -2377, 68, -31);}
 		@Override
 		public String getOwner() {return "Soldier_18";}
 		@Override
@@ -117,7 +120,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Helms Klamm";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -619, 79, 258);}
 		@Override
 		public String getOwner() {return "Lord_Adrian";}
 		@Override
@@ -126,7 +129,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Hobbingen";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -900, 64, 96);}
 		@Override
 		public String getOwner() {return "Nanseneut";}
 		@Override
@@ -135,7 +138,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Isengard";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -425, 79, 235);}
 		@Override
 		public String getOwner() {return "lordminecraft100";}
 		@Override
@@ -144,7 +147,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Lorien";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 50, 78, -74);}
 		@Override
 		public String getOwner() {return "Shine_ManHD";}
 		@Override
@@ -153,7 +156,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Moria";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -478, 63, 44);}
 		@Override
 		public String getOwner() {return "Infernoart";}
 		@Override
@@ -162,7 +165,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Mordor";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 884, 71, -223);}
 		@Override
 		public String getOwner() {return "Nanseneut";}
 		@Override
@@ -171,7 +174,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Minas Thirith";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -58, 75, 252);}
 		@Override
 		public String getOwner() {return "Lord_Adrian";}
 		@Override
@@ -180,7 +183,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Nargothrond";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 1567, 75, 740);}
 		@Override
 		public String getOwner() {return "Paul_und_Max";}
 		@Override
@@ -189,7 +192,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Osgiliath";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 443, 76, 55);}
 		@Override
 		public String getOwner() {return "Lord_Adrian";}
 		@Override
@@ -198,7 +201,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Seredane";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, 807, 77, -33);}
 		@Override
 		public String getOwner() {return "Jusnara";}
 		@Override
@@ -207,7 +210,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Seestadt";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -880, 63, 833);}
 		@Override
 		public String getOwner() {return "goghlo";}
 		@Override
@@ -216,7 +219,7 @@ public enum Stadt {
 		@Override
 		public String getName() {return "Wetterspitze";}
 		@Override
-		public Location getLoc() {return null;}
+		public Location getLoc() {return new Location(Stadt.w, -1911, 79, 364);}
 		@Override
 		public String getOwner() {return "Cubecrafter09";}
 		@Override
@@ -267,5 +270,8 @@ public enum Stadt {
 	public boolean isGood() {
 		return true;
 	}
+	
+
+	private static World w = ArdaCraft.getACServer().getWorld("world");
 	
 }

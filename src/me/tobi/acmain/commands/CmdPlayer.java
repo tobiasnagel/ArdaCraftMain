@@ -24,13 +24,14 @@ public class CmdPlayer implements CommandExecutor {
 			if (args.length == 1) {
 				Player p = Bukkit.getPlayer(args[0]);
 				if(p.isOnline()){
-					s("§b§lSpieler Info: §a§l" + p.getName());
-					s("§6Position: §7" + l(p.getLocation()));
+					s("§b§lSpieler Info: §a§l" + p.getName() + "/" + p.getDisplayName());
 					s("§6Health: " + h(((CraftPlayer)p).getHealth()));
-					s("§6Saturation: " + h(p.getSaturation()));
+					s("§6Food-Level: " + h(p.getFoodLevel()));
+					s("§6Position: §7" + l(p.getLocation()));
 					s("§6Nearest City: §7" + Methoden.getNearestCity(p.getLocation()));
 					s("§6Rank: §7" + Methoden.getRank(p));
 					s("§6Can Warp: " + b(p.hasPermission("essentials.warp")));
+					s("§6Is Flying: " + b(p.isFlying()));
 				}else {
 					s("§b§lSpieler Info: §c§l" + p.getName());
 					s("§6Banned: " + b(p.isBanned()));
