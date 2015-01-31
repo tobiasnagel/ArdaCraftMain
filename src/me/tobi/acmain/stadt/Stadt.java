@@ -188,6 +188,15 @@ public enum Stadt {
 		public String getOwner() {return "Paul_und_Max";}
 		@Override
 		public boolean isGood() {return true;}
+	}, NUMENOR{
+		@Override
+		public String getName() {return "Numenor";}
+		@Override
+		public Location getLoc() {return new Location(Stadt.w, -324, 63, 1888);}
+		@Override
+		public String getOwner() {return "MrSoong";}
+		@Override
+		public boolean isGood() {return true;}
 	}, OSGILIATH{
 		@Override
 		public String getName() {return "Osgiliath";}
