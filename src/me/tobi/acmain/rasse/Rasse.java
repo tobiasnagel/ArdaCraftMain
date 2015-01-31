@@ -40,7 +40,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Dolch [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.BAD;};
 	}, URUKHAI{
@@ -57,7 +57,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Armbrust [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.BAD;};
 	}, TROLL{
@@ -73,7 +73,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Krummschwert [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.BAD;};
 	}, WARGREITER{
@@ -89,7 +89,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Elbenbogen [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.BAD;};
 	}, OSTLING{
@@ -106,7 +106,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Menschenschwert [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.BAD;};
 	}, ELB{
@@ -138,7 +138,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "Menschenschwer [Item]";
+			return "Menschenschwert [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.GOOD;};
 	}, MAGIER{
@@ -155,7 +155,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "Koordinaten anderer spieler herausfinden";
+			return "Magierstab [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.GOOD;};
 	}, ZWERG{
@@ -204,7 +204,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Krummschwert [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.GOOD;};
 	}, DUNEDAIN{
@@ -220,7 +220,7 @@ public enum Rasse {
 		}
 		@Override
 		public String getAbility() {
-			return "In Arbeit";
+			return "Armbust [Item]";
 		}
 		@Override public Attitude getAttitude(){return Attitude.GOOD;};
 	}, UNREGISTERED{
