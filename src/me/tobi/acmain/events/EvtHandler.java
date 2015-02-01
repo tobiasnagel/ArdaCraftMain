@@ -446,8 +446,14 @@ public class EvtHandler implements Listener{
 		if(ArdaCraft.muted.contains(p)) {
 			ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du bist gemuted und kannst nicht schreiben!", p);
 		}else {
-			if(chatmuteActive && (!(p.isOp()) || !(Methoden.getRasse(p) == Rasse.UNREGISTERED))) {
-				ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Der Chat wurde deaktiviert! Du kannst momentan nciht schreiben!", p);
+			if(chatmuteActive) {
+				if(Methoden.getRank(p) != "Spieler" || Methoden.getRasse(p) == Rasse.UNREGISTERED) {
+					ArdaCraft.getCraftLogger().chatJSON(messages);
+					ArdaCraft.getACServer().getConsoleSender().sendMessage("§bCHAT: §a" + p.getName() + "§c(§a" + p.getDisplayName()
+							 + "§c)§b: " + event.getMessage());
+				}else {
+					ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Der Chat wurde deaktiviert! Du kannst momentan nciht schreiben!", p);
+				}
 			}else {
 				ArdaCraft.getCraftLogger().chatJSON(messages);
 				ArdaCraft.getACServer().getConsoleSender().sendMessage("§bCHAT: §a" + p.getName() + "§c(§a" + p.getDisplayName()
