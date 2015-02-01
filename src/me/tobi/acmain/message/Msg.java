@@ -15,5 +15,6 @@ public class Msg {
 	public static final String COMMAND_REQUEST_CHARAKTERTAKEN = "Dieser Charakter ist leider schon vergeben! Bitte wähle einen anderen!";
 	public static final String COMMAND_ADDWARP_USAGE = "Benutzung: /addwarp <inbuild_[ID]> <Stadtname>";
 	public static final String COMMAND_PLAYER_USAGE = "Benutzung: /player <Player>";
+	public static final String COMMAND_MUTE_USAGE = "Benutzung: /mute <Player>";
 	
 }

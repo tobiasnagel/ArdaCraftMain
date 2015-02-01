@@ -23,16 +23,18 @@ public class CmdMute implements CommandExecutor {
 						// TODO newby check
 						if(ArdaCraft.muted.contains(pl)) {
 							ArdaCraft.muted.remove(pl);
-							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du hast " + pl.getName() + " entmuted!", pl);
+							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du hast " + pl.getDisplayName() + " entmuted!", p);
+							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du wurdest von  " + p.getDisplayName() + " entmuted!", pl);
 						}else {
 							ArdaCraft.muted.add(pl);
-							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du hast " + pl.getName() + " gemuted!", pl);
+							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du hast " + pl.getName() + " gemuted!", p);
+							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du wurdest von  " + p.getDisplayName() + " gemuted!", pl);
 						}
 					}else {
 						ArdaCraft.getCraftLogger().logToChat(Level.WARN, "§a" + args[0] + "§c ist nicht online!", p);
 					}
 				}else {//wring usage
-					ArdaCraft.getCraftLogger().logToChat(Level.WARN, Msg.COMMAND_REGISTER_USAGE, p);
+					ArdaCraft.getCraftLogger().logToChat(Level.WARN, Msg.COMMAND_MUTE_USAGE, p);
 				}
 			}else { //No permission
 				ArdaCraft.getCraftLogger().logToChat(Level.WARN, Msg.COMMAND_NO_PERMISSION, p);
