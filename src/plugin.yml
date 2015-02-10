@@ -52,3 +52,6 @@ commands:
   thief:
     usage: /thief
     description: Hobbit Befehl
+  shoot:
+    usage: /shoot
+    description: Test Befehl
