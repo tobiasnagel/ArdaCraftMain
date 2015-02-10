@@ -4,6 +4,8 @@ import me.tobi.acmain.rasse.Rasse;
 
 import org.bukkit.Effect;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Guardian;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -48,7 +50,14 @@ public class Scheduler {
 						}
 					}
 				}
-				
+				for(Player p : ArdaCraft.shootmode) {
+					Entity e = p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
+					p.setPassenger(e);
+					e.getLocation().setDirection(p.getLocation().getDirection());
+					Guardian g = (Guardian) e;				
+					g.setTarget(Methoden.getNearestPlayer(p.getLocation(), 20));
+					g.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+				}
 			}
 			
 		}, 100, 100);
