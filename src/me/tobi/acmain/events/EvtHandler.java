@@ -27,6 +27,7 @@ import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Guardian;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -37,6 +38,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityExplodeEvent;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.entity.ProjectileHitEvent;
@@ -57,6 +59,7 @@ import org.bukkit.event.server.ServerListPingEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.spigotmc.event.entity.EntityDismountEvent;
 
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
@@ -673,6 +676,17 @@ public class EvtHandler implements Listener{
 				}
 			}
 		}
+		
+		if(Methoden.getRasse(event.getPlayer()) == Rasse.ELB){
+			Player p = event.getPlayer();
+			if(p.getGameMode() != GameMode.CREATIVE) {
+				if(p.getLocation().subtract(0,  1, 0).getBlock().getType() != org.bukkit.Material.AIR) {
+					if(!p.isFlying()) {
+						p.setAllowFlight(true);
+					}
+				}
+			}
+		}
 	}
 	
 	@EventHandler
@@ -685,6 +699,15 @@ public class EvtHandler implements Listener{
 			p.setAllowFlight(false);
 			p.setFlying(false);
 			p.setVelocity(p.getLocation().getDirection().multiply(1.5).setY(1));
+		}
+		if(Methoden.getRasse(event.getPlayer()) == Rasse.ELB){
+			Player p = event.getPlayer();
+			if(p.getGameMode() == GameMode.CREATIVE)
+				return;
+			event.setCancelled(true);
+			p.setAllowFlight(false);
+			p.setFlying(false);
+			p.setVelocity(p.getLocation().getDirection().multiply(1.01).setY(1));
 		}
 	}
 	
@@ -722,8 +745,27 @@ public class EvtHandler implements Listener{
 					speerShooter.add(event.getPlayer());
 				}
 			}
+		}		
+	}
+	
+	@EventHandler
+	public void onEntityTargetLivingEntity(EntityTargetLivingEntityEvent event) {
+		if(event.getTarget() instanceof Player){
+			if(Methoden.getRasse((Player)event.getTarget()) == Rasse.ORK) {
+				if(event.getEntity().getType() == EntityType.ZOMBIE){
+					event.setTarget(null);
+				}
+			}
 		}
-		
+	}
+	
+	@EventHandler
+	public void onEntityDismount(EntityDismountEvent event) {
+		if(event.getEntity()instanceof Guardian) {
+			if(event.getDismounted() instanceof Player) {
+				
+			}
+		}
 	}
 
 }
