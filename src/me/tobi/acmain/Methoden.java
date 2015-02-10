@@ -254,4 +254,17 @@ public class Methoden {
 		}
 		return pa;
 	}
+	
+	public static Player getNearestPlayer(Location loc, int radius) {
+		double min = Integer.MAX_VALUE;
+		Player nearest = null;
+		for(Player p : getPlayersAround(loc, radius)) {
+			double dist = loc.distance(p.getLocation());
+			if(dist < min) {
+				min = dist;
+				nearest = p;
+			}			
+		}
+		return nearest;
+	}
 }
