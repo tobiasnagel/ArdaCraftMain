@@ -1,6 +1,5 @@
 package me.tobi.acmain.commands;
 
-import me.tobi.acmain.Methoden;
 import me.tobi.acmain.ArdaCraft;
 import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Msg;
@@ -18,7 +17,7 @@ public class CmdHelp implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender != null) {
 			Player p = (Player)sender;
-			if(Methoden.getRasse(p).equals(Rasse.UNREGISTERED)) {
+			if(Rasse.get(p).equals(Rasse.UNREGISTERED)) {
 				p.sendMessage(ChatColor.translateAlternateColorCodes(
 						'&',"&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-"
 								+ "&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-&2-&3-"

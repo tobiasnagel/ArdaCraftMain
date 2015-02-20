@@ -21,7 +21,7 @@ public class CmdThief implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender != null) {
 			final Player p = (Player)sender;
-			if(Methoden.getRasse(p) == Rasse.HOBBIT) {
+			if(Rasse.get(p) == Rasse.HOBBIT) {
 				boolean success = false;
 				ItemStack item = new ItemStack(Material.AIR);
 				if(!ArdaCraft.colldown_thief.contains(p)) {
@@ -33,7 +33,7 @@ public class CmdThief implements CommandExecutor {
 						return true;
 					}else {
 						stolen = (Player)o;
-						if(Methoden.getRasse(stolen) == Rasse.HOBBIT) {
+						if(Rasse.get(stolen) == Rasse.HOBBIT) {
 							p.sendMessage("Man bestiehlt doch keine anderen Hobbits!");
 							return true;
 						}

@@ -1,10 +1,24 @@
 package me.tobi.acmain;
 
+import java.io.IOException;
+import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
+import java.util.UUID;
 
-import me.tobi.acmain.rasse.Rasse;
+import lib.json.JSONArray;
+import lib.json.JSONObject;
+import me.odium.simplewarnings.databases.DBConnection;
 import me.tobi.acmain.stadt.Stadt;
+import me.tobi.acmain.warn.Warn;
 
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -14,14 +28,35 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 import org.bukkit.potion.PotionEffect;
 
-import ru.tehkode.permissions.PermissionUser;
-import ru.tehkode.permissions.bukkit.PermissionsEx;
-
 
 public class Methoden {
 	
 	public static String toName(String s){
 		return "";
+	}
+	
+	public static List<String> getNames(Player p) {
+		String names = null;
+		Scanner scanner;
+		String uuid = p.getUniqueId().toString().replaceAll("-", "");
+		try {
+			scanner = new Scanner(new URL("https://api.mojang.com/user/profiles/" + uuid + "/names").openStream());
+			names = scanner.nextLine();				        
+	        scanner.close();				        
+		} catch (IOException e) {}
+		JSONArray arr = new JSONArray(names);
+		List<String> namen = new ArrayList<String>();
+		if (arr != null) {
+			int length = arr.length();
+			for (int i = 0; i < length; i++) {
+				JSONObject obj = new JSONObject(arr.get(i).toString());
+				if(!obj.has("name")) {
+					break;
+				}
+				namen.add(obj.getString("name").toString());
+			}
+		}
+		return namen;
 	}
 	
 	public static int min(int[] i) {
@@ -44,49 +79,7 @@ public class Methoden {
 		return t;
 	}
 	
-	public static Rasse getRasse(Player p) {
-		PermissionUser user = PermissionsEx.getUser(p);
-		if(user.getPrefix().contains("Ork")){
-			return Rasse.ORK;
-		}
-		if(user.getPrefix().contains("Nazgul")){
-			return Rasse.NAZGUL;
-		}
-		if(user.getPrefix().contains("Urukhai")){
-			return Rasse.URUKHAI;
-		}
-		if(user.getPrefix().contains("Troll")){
-			return Rasse.TROLL;
-		}
-		if(user.getPrefix().contains("Wargreiter")){
-			return Rasse.WARGREITER;
-		}
-		if(user.getPrefix().contains("Ostling")){
-			return Rasse.OSTLING;
-		}
-		if(user.getPrefix().contains("Elb")){
-			return Rasse.ELB;
-		}
-		if(user.getPrefix().contains("Mensch")){
-			return Rasse.MENSCH;
-		}
-		if(user.getPrefix().contains("Magier")){
-			return Rasse.MAGIER;
-		}
-		if(user.getPrefix().contains("Zwerg")){
-			return Rasse.ZWERG;
-		}
-		if(user.getPrefix().contains("Hobbit")){
-			return Rasse.HOBBIT;
-		}
-		if(user.getPrefix().contains("Ent")){
-			return Rasse.ENT;
-		}
-		if(user.getPrefix().contains("Dunedain")){
-			return Rasse.DUNEDAIN;
-		}
-		return Rasse.UNREGISTERED;
-	}
+	
 	
 	public static double getDamageReduced(HumanEntity entity)
     {
@@ -267,4 +260,51 @@ public class Methoden {
 		}
 		return nearest;
 	}
+	
+	public static List<Warn> getWarns(Player p) {
+		DBConnection service = DBConnection.getInstance();
+		ResultSet rs;
+		Statement stmt;
+		java.sql.Connection con;	
+		List<Warn> rtn = new ArrayList<Warn>();
+	    UUID uuid = p.getUniqueId();
+		try{
+			con = service.getConnection();	        
+			stmt = con.createStatement();
+			
+			rs = stmt.executeQuery("SELECT COUNT(warning) AS warningTotal FROM SimpleWarnings WHERE uuid='" + uuid + "'");
+			
+			int warningTotal = rs.getInt("warningTotal");
+			rs.close();
+			if (warningTotal == 0)
+			{
+				return null;
+			}
+			
+			rs = stmt.executeQuery("SELECT * FROM SimpleWarnings WHERE uuid='" + uuid + "' ORDER BY date ASC");
+			int i = 0;
+			while (rs.next()){
+				String date;
+				date = rs.getString("date");
+				DateFormat fmt = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+				Date aDate = fmt.parse(date);
+				DateFormat fmt2 = new SimpleDateFormat("dd/MMM/yy HH:mm");
+				date = fmt2.format(aDate);
+				
+				String warning = rs.getString("warning");
+				String warnPB = rs.getString("placedby");
+				i++;
+				// i = warn number
+				// date = warn date
+				// warnPB = given by
+				// warning = warn message
+				rtn.add(new Warn(p, i, date, warnPB, warning));
+				
+			}
+			rs.close();
+			stmt.close();
+		}catch (Exception e){e.printStackTrace();}
+		return rtn;
+	}
+	
 }

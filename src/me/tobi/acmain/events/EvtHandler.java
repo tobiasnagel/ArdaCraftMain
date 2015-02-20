@@ -15,6 +15,7 @@ import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Message;
 import me.tobi.acmain.message.Msg;
 import me.tobi.acmain.rasse.Rasse;
+import me.tobi.acmain.rasse.Rasse.Attitude;
 import net.minecraft.server.v1_8_R1.Enchantment;
 
 import org.bukkit.ChatColor;
@@ -95,6 +96,8 @@ public class EvtHandler implements Listener{
 		Message[] msg = {m1, m2};
 		ArdaCraft.getCraftLogger().chatJSON(msg);
 		Methoden.clearEffects(p);
+		String prefix = Rasse.get(p).getAttitude() == Attitude.BAD?"&7":"&2";
+		ArdaCraft.getACServer().dispatchCommand(ArdaCraft.getACServer().getConsoleSender(), "ne prefix " + p.getName() + " " + prefix);
 	}
 	
 	@EventHandler
@@ -202,7 +205,7 @@ public class EvtHandler implements Listener{
 			if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				if(type == ItemType.ARMBRUST) {
 					final Player p = event.getPlayer();
-					if(Methoden.getRasse(p) == Rasse.URUKHAI || Methoden.getRasse(p) == Rasse.DUNEDAIN) {
+					if(Rasse.get(p) == Rasse.URUKHAI || Rasse.get(p) == Rasse.DUNEDAIN) {
 						if(! p.hasPotionEffect(PotionEffectType.SLOW)) {
 							p.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 20, 255));
 							ArdaCraft.getACServer().getScheduler().scheduleSyncDelayedTask(ArdaCraft.getPlugin(), new Runnable() {
@@ -231,7 +234,7 @@ public class EvtHandler implements Listener{
 						p.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 255));
 						p.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 5));
 						for(Player pl : ArdaCraft.getACServer().getOnlinePlayers()) {
-							if(!( Methoden.getRasse(p).equals(Rasse.NAZGUL) || p.hasPotionEffect(PotionEffectType.INVISIBILITY)));
+							if(!( Rasse.get(p).equals(Rasse.NAZGUL) || p.hasPotionEffect(PotionEffectType.INVISIBILITY)));
 							pl.hidePlayer(p);
 						}
 					} else {
@@ -248,7 +251,7 @@ public class EvtHandler implements Listener{
 				
 				if (type == ItemType.STAB) {
 					Player p = event.getPlayer();
-					if(Methoden.getRasse(p) == Rasse.MAGIER) {
+					if(Rasse.get(p) == Rasse.MAGIER) {
 						int cooldownTime = 1;
 						if (cooldowns.containsKey(p.getName())) {
 							long secondsLeft = ((cooldowns.get(p.getName()) / 1000) + cooldownTime)
@@ -271,8 +274,14 @@ public class EvtHandler implements Listener{
 				
 			}
 		}
-		if(! (ItemType.getType(event.getItem()) == ItemType.NORMAL) && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
-			event.setCancelled(true);
+		//if(! (ItemType.getType(event.getItem()) == ItemType.NORMAL) && (event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK)) {
+		//	event.setCancelled(true);
+		//} //TODO überprüfen: fehler?
+		
+		if(ItemType.getType(event.getItem()) == ItemType.BOGEN) {
+			if(Rasse.get(event.getPlayer()) != Rasse.ELB) {
+				event.setCancelled(true);
+			}
 		}
 		if(ItemHandler.isSpecialItem(event.getItem())) {
 			if(ItemType.getType(event.getItem()).getMaterial() == Material.BLAZE_ROD) {
@@ -336,7 +345,7 @@ public class EvtHandler implements Listener{
 			if(ItemHandler.isSpecialItem(item)) {
 				ItemType iType = ItemType.getType(item);
 				WeaponType wType = iType.getWeaponType();
-				Rasse r = Methoden.getRasse(damager);
+				Rasse r = Rasse.get(damager);
 				if(wType == WeaponType.NAHKAMPF || wType == WeaponType.WITHERKOPF){
 					if(iType == ItemType.AXT && r != Rasse.ZWERG) 
 						return;
@@ -375,11 +384,9 @@ public class EvtHandler implements Listener{
 				if(ItemHandler.isSpecialItem(item)) {
 					ItemType iType = ItemType.getType(item);
 					WeaponType wType = iType.getWeaponType();
-					Rasse r = Methoden.getRasse(damager);
+					Rasse r = Rasse.get(damager);
 					if(wType == WeaponType.PFEIL || wType == WeaponType.WITHERKOPF || wType == WeaponType.FEUERBALL){				
-						if(iType == ItemType.BOGEN && r != Rasse.ELB) 
-							return;
-						if(iType == ItemType.BOGEN && r != Rasse.WARGREITER) 
+						if(iType == ItemType.BOGEN && (r != Rasse.ELB || r!= Rasse.WARGREITER)) 
 							return;
 						if(iType == ItemType.STAB && r != Rasse.MAGIER) 
 							return;
@@ -400,7 +407,7 @@ public class EvtHandler implements Listener{
 				}
 				
 				if(victim instanceof Player) {
-					if(Methoden.getRasse(damager) == Methoden.getRasse((Player)victim)) {
+					if(Rasse.get(damager) == Rasse.get((Player)victim)) {
 						event.setDamage(0);
 						event.setCancelled(true);
 					}
@@ -412,7 +419,7 @@ public class EvtHandler implements Listener{
 			if(event.getEntity().getType() == EntityType.PLAYER) {
 				Player damager = (Player)event.getDamager();
 				Player attacked = (Player)event.getEntity();
-				if(Methoden.getRasse(damager) == Methoden.getRasse(attacked)) {
+				if(Rasse.get(damager) == Rasse.get(attacked)) {
 					event.setCancelled(true);
 					ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du kannst deine eigene Rasse nicht angreifen!", damager);
 				}
@@ -450,7 +457,7 @@ public class EvtHandler implements Listener{
 			ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du bist gemuted und kannst nicht schreiben!", p);
 		}else {
 			if(chatmuteActive) {
-				if(Methoden.getRank(p) != "Spieler" || Methoden.getRasse(p) == Rasse.UNREGISTERED) {
+				if(Methoden.getRank(p) != "Spieler" || Rasse.get(p) == Rasse.UNREGISTERED) {
 					ArdaCraft.getCraftLogger().chatJSON(messages);
 					ArdaCraft.getACServer().getConsoleSender().sendMessage("§bCHAT: §a" + p.getName() + "§c(§a" + p.getDisplayName()
 							 + "§c)§b: " + event.getMessage());
@@ -677,7 +684,7 @@ public class EvtHandler implements Listener{
 			}
 		}
 		
-		if(Methoden.getRasse(event.getPlayer()) == Rasse.ELB){
+		if(Rasse.get(event.getPlayer()) == Rasse.ELB){
 			Player p = event.getPlayer();
 			if(p.getGameMode() != GameMode.CREATIVE) {
 				if(p.getLocation().subtract(0,  1, 0).getBlock().getType() != org.bukkit.Material.AIR) {
@@ -700,7 +707,7 @@ public class EvtHandler implements Listener{
 			p.setFlying(false);
 			p.setVelocity(p.getLocation().getDirection().multiply(1.5).setY(1));
 		}
-		if(Methoden.getRasse(event.getPlayer()) == Rasse.ELB){
+		if(Rasse.get(event.getPlayer()) == Rasse.ELB){
 			Player p = event.getPlayer();
 			if(p.getGameMode() == GameMode.CREATIVE)
 				return;
@@ -751,7 +758,7 @@ public class EvtHandler implements Listener{
 	@EventHandler
 	public void onEntityTargetLivingEntity(EntityTargetLivingEntityEvent event) {
 		if(event.getTarget() instanceof Player){
-			if(Methoden.getRasse((Player)event.getTarget()) == Rasse.ORK) {
+			if(Rasse.get((Player)event.getTarget()) == Rasse.ORK) {
 				if(event.getEntity().getType() == EntityType.ZOMBIE){
 					event.setTarget(null);
 				}

@@ -3,8 +3,8 @@ package me.tobi.acmain.controlpoints;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.tobi.acmain.Methoden;
 import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.rasse.Rasse;
 import me.tobi.acmain.rasse.Rasse.Attitude;
 
 import org.bukkit.Location;
@@ -38,10 +38,10 @@ public class ControlPointManager {
 				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 					for(ControlPoint cp : cps) {
 						if(p.getLocation().distance(cp.getLocation()) < 5) {
-							if(Methoden.getRasse(p).getAttitude() == Attitude.GOOD) {
+							if(Rasse.get(p).getAttitude() == Attitude.GOOD) {
 								cp.addGoodGrade();
 							}
-							if(Methoden.getRasse(p).getAttitude() == Attitude.BAD) {
+							if(Rasse.get(p).getAttitude() == Attitude.BAD) {
 								cp.addGoodGrade();
 							}
 						}

@@ -2,9 +2,10 @@ package me.tobi.acmain.controlpoints;
 
 import java.util.HashMap;
 
-import me.tobi.acmain.Methoden;
 import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Methoden;
 import me.tobi.acmain.message.CraftLogger.Level;
+import me.tobi.acmain.rasse.Rasse;
 import me.tobi.acmain.rasse.Rasse.Attitude;
 
 import org.bukkit.Location;
@@ -50,9 +51,9 @@ public class ControlPointAlt {
 					for(Player p : pl.getServer().getOnlinePlayers()) {
 						if(p.getWorld().getName() == "world") {
 							if(loc.distance(p.getLocation()) < 4) {
-								if(Methoden.getRasse(p).getAttitude().equals(Attitude.GOOD)) {
+								if(Rasse.get(p).getAttitude().equals(Attitude.GOOD)) {
 									addGoodGrade(loc);
-								}else if(Methoden.getRasse(p).getAttitude().equals(Attitude.GOOD)) {
+								}else if(Rasse.get(p).getAttitude().equals(Attitude.GOOD)) {
 									addBadGrade(loc);
 								}else {
 									

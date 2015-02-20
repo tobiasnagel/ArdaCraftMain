@@ -3,11 +3,12 @@ package me.tobi.acmain.rasse;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.tobi.acmain.Methoden;
-
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import ru.tehkode.permissions.PermissionUser;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public enum Rasse {
 	
@@ -259,10 +260,55 @@ public enum Rasse {
 	}
 	
 	public static void applyEffects(Player p) {
-		p.addPotionEffects(Methoden.getRasse(p).getEffects());
+		p.addPotionEffects(get(p).getEffects());
 	}
 	
 	public enum Attitude {
 		GOOD, BAD, NEUTRAL, UNKNOWN;
-	}	
+	}
+	
+	public static Rasse get(Player p) {
+		PermissionUser user = PermissionsEx.getUser(p);
+		if (user.getPrefix().contains("Ork")) {
+			return Rasse.ORK;
+		}
+		if (user.getPrefix().contains("Nazgul")) {
+			return Rasse.NAZGUL;
+		}
+		if (user.getPrefix().contains("Urukhai")) {
+			return Rasse.URUKHAI;
+		}
+		if (user.getPrefix().contains("Troll")) {
+			return Rasse.TROLL;
+		}
+		if (user.getPrefix().contains("Wargreiter")) {
+			return Rasse.WARGREITER;
+		}
+		if (user.getPrefix().contains("Ostling")) {
+			return Rasse.OSTLING;
+		}
+		if (user.getPrefix().contains("Elb")) {
+			return Rasse.ELB;
+		}
+		if (user.getPrefix().contains("Mensch")) {
+			return Rasse.MENSCH;
+		}
+		if (user.getPrefix().contains("Magier")) {
+			return Rasse.MAGIER;
+		}
+		if (user.getPrefix().contains("Zwerg")) {
+			return Rasse.ZWERG;
+		}
+		if (user.getPrefix().contains("Hobbit")) {
+			return Rasse.HOBBIT;
+		}
+		if (user.getPrefix().contains("Ent")) {
+			return Rasse.ENT;
+		}
+		if (user.getPrefix().contains("Dunedain")) {
+			return Rasse.DUNEDAIN;
+		}
+		return Rasse.UNREGISTERED;
+		
+	}
 }
