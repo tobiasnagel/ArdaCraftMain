@@ -15,6 +15,7 @@ import me.tobi.acmain.commands.CmdOpen;
 import me.tobi.acmain.commands.CmdPlayer;
 import me.tobi.acmain.commands.CmdRegeln;
 import me.tobi.acmain.commands.CmdRegister;
+import me.tobi.acmain.commands.CmdReport;
 import me.tobi.acmain.commands.CmdRequest;
 import me.tobi.acmain.commands.CmdShoot;
 import me.tobi.acmain.commands.CmdSpawn;
@@ -69,6 +70,7 @@ public class ArdaCraft extends JavaPlugin{
 		getCommand("stadt").setExecutor(new CmdStadt());
 		getCommand("thief").setExecutor(new CmdThief());
 		getCommand("shoot").setExecutor(new CmdShoot());
+		getCommand("report").setExecutor(new CmdReport());
 		//getCommand("list").setExecutor(new CmdList());
 		ConsoleCommandSender sender = getServer().getConsoleSender();
 		sender.sendMessage(Msg.PLUGIN_ENABLED);
