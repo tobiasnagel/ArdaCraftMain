@@ -3,6 +3,7 @@ package me.tobi.acmain;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.tobi.acmain.clicksystem.ClickListener;
 import me.tobi.acmain.commands.CmdAddWarp;
 import me.tobi.acmain.commands.CmdBigJump;
 import me.tobi.acmain.commands.CmdBoese;
@@ -51,7 +52,8 @@ public class ArdaCraft extends JavaPlugin{
 		//ControlPointManager.init();
 		//ControlPointManager.startScheduler();
 		config = this.getConfig();
-		Bukkit.getServer().getPluginManager().registerEvents(new EvtHandler(this), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new EvtHandler(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new ClickListener(), this);
 		getCommand("register").setExecutor(new CmdRegister());
 		getCommand("checkinaktive").setExecutor(new CmdCheckinaktive());
 		getCommand("request").setExecutor(new CmdRequest());
