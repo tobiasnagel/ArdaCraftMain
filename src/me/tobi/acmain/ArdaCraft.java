@@ -49,8 +49,6 @@ public class ArdaCraft extends JavaPlugin{
 	public void onEnable() {
 		ItemHandler.registerItems();
 		registerFiles();
-		//ControlPointManager.init();
-		//ControlPointManager.startScheduler();
 		config = this.getConfig();
 		Bukkit.getServer().getPluginManager().registerEvents(new EvtHandler(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ClickListener(), this);
