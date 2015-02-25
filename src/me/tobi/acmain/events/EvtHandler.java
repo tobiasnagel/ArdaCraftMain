@@ -7,6 +7,7 @@ import java.util.Random;
 
 import me.tobi.acmain.ArdaCraft;
 import me.tobi.acmain.Methoden;
+import me.tobi.acmain.Rank;
 import me.tobi.acmain.items.ItemHandler;
 import me.tobi.acmain.items.ItemType;
 import me.tobi.acmain.items.ItemType.WeaponType;
@@ -67,11 +68,7 @@ import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public class EvtHandler implements Listener{
 	
-	ArdaCraft pl;
 	
-	public EvtHandler(ArdaCraft plugin) {
-		pl = plugin;
-	}
 	
 	//==============================================
 	public static boolean chatmuteActive = false;
@@ -457,7 +454,7 @@ public class EvtHandler implements Listener{
 			ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du bist gemuted und kannst nicht schreiben!", p);
 		}else {
 			if(chatmuteActive) {
-				if(Methoden.getRank(p) != "Spieler" || Rasse.get(p) == Rasse.UNREGISTERED) {
+				if(Rank.get(p) != Rank.SPIELER || Rasse.get(p) == Rasse.UNREGISTERED) {
 					ArdaCraft.getCraftLogger().chatJSON(messages);
 					ArdaCraft.getACServer().getConsoleSender().sendMessage("§bCHAT: §a" + p.getName() + "§c(§a" + p.getDisplayName()
 							 + "§c)§b: " + event.getMessage());

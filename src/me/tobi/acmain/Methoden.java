@@ -140,20 +140,7 @@ public class Methoden {
 			}
 		}
 		return city + "(" + (int)min + "m)";
-	}
-
-	public static String getRank(Player p) {
-		if(p.isOp()) {
-			return "Admin";
-		}
-		if(p.hasPermission("essentials.fly")) {
-			return "Moderator";
-		}
-		if(p.hasPermission("mb.ban")) {
-			return "Chat-Moderator";
-		}
-		return "Spieler";
-	}
+	}	
 	
 	/*public static HashMap<String, Location> getWarps() {
 		HashMap<String, Location> warps = new HashMap<String, Location>();

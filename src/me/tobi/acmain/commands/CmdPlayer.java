@@ -3,6 +3,7 @@ package me.tobi.acmain.commands;
 import java.util.Date;
 
 import me.tobi.acmain.Methoden;
+import me.tobi.acmain.Rank;
 import me.tobi.acmain.message.Msg;
 
 import org.bukkit.Bukkit;
@@ -29,7 +30,7 @@ public class CmdPlayer implements CommandExecutor {
 					s("§6Food-Level: " + h(p.getFoodLevel()));
 					s("§6Position: §7" + l(p.getLocation()));
 					s("§6Nearest City: §7" + Methoden.getNearestCity(p.getLocation()));
-					s("§6Rank: §7" + Methoden.getRank(p));
+					s("§6Rank: §7" + Methoden.normalize(Rank.get(p).toString().toLowerCase()));
 					s("§6Can Warp: " + b(p.hasPermission("essentials.warp")));
 					s("§6Is Flying: " + b(p.isFlying()));
 				}else {
