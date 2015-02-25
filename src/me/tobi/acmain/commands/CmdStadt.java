@@ -24,7 +24,7 @@ public class CmdStadt implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender != null) {
 			Player p = (Player)sender;
-			Inventory inv = Bukkit.createInventory(p, 27, "Städte");
+			Inventory inv = Bukkit.createInventory(p, 4*9, "Städte");
 			for(Stadt s : Stadt.values()) {
 				ItemStack i = new ItemStack(Material.BANNER,1, (short)11);
 				ItemMeta im = i.getItemMeta();
