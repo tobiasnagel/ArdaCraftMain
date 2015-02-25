@@ -26,6 +26,15 @@ public enum Stadt {
 		public String getOwner() {return "chrito_miner";}
 		@Override
 		public boolean isGood() {return true;}
+	}, CARNDUM{
+		@Override
+		public String getName() {return "CarnDum";}
+		@Override
+		public Location getLoc() {return new Location(Stadt.w, -3572, 77, 955);}
+		@Override
+		public String getOwner() {return "Soldier_18";}
+		@Override
+		public boolean isGood() {return false;}
 	}, DAINA{
 		@Override
 		public String getName() {return "Daina";}
