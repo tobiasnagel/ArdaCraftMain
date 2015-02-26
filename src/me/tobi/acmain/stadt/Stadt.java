@@ -104,9 +104,9 @@ public enum Stadt {
 		@Override
 		public Location getLoc() {return new Location(Stadt.w, -239, 70, 1354);}
 		@Override
-		public String getOwner() {return "_SlimPlays_";}
+		public String getOwner() {return "Hall1H4llo";}
 		@Override
-		public boolean isGood() {return true;}
+		public boolean isGood() {return false;}
 	}, GALTREV{
 		@Override
 		public String getName() {return "Galtrev";}
