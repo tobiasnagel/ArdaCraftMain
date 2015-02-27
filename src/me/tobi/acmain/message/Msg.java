@@ -10,7 +10,7 @@ public class Msg {
 	public static final String COMMAND_CHECKINAKTIVE_USAGE = "Benutzung: /checkinaktive";
 	public static final String COMMAND_REGISTER_TAKEN = "Der Charakter ist bereits vergeben!";
 	public static final String COMMAND_REQUEST_USAGE = "Benutzung: /request <Rasse> <Charaktername>";
-	public static final String COMMAND_REQUEST_INVALIDNAME = "Bitte wähle einen Herr der Ringe namen wie z.B. \"Gandalf\"!";
+	public static final String COMMAND_REQUEST_INVALIDNAME = "Bitte wähle einen Herr der Ringe Namen wie z.B. \"Gandalf\"!";
 	public static final String COMMAND_REQUEST_INVALIDRACE = "Bitte wähle eine Herr der Ringe Rasse wie z.B. \"Magier\"";
 	public static final String COMMAND_REQUEST_CHARAKTERTAKEN = "Dieser Charakter ist leider schon vergeben! Bitte wähle einen anderen!";
 	public static final String COMMAND_ADDWARP_USAGE = "Benutzung: /addwarp <inbuild_[ID]> <Stadtname>";
