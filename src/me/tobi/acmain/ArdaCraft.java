@@ -24,6 +24,7 @@ import me.tobi.acmain.commands.CmdStadt;
 import me.tobi.acmain.commands.CmdThief;
 import me.tobi.acmain.events.EvtHandler;
 import me.tobi.acmain.items.ItemHandler;
+import me.tobi.acmain.items.ItemListener;
 import me.tobi.acmain.message.CraftLogger;
 import me.tobi.acmain.message.Msg;
 
@@ -51,6 +52,7 @@ public class ArdaCraft extends JavaPlugin{
 		config = this.getConfig();
 		Bukkit.getServer().getPluginManager().registerEvents(new EvtHandler(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ClickListener(), this);
+		Bukkit.getServer().getPluginManager().registerEvents(new ItemListener(), this);
 		getCommand("register").setExecutor(new CmdRegister());
 		getCommand("checkinaktive").setExecutor(new CmdCheckinaktive());
 		getCommand("request").setExecutor(new CmdRequest());
