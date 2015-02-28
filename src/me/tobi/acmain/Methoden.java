@@ -41,7 +41,7 @@ public class Methoden {
 		String uuid = p.getUniqueId().toString().replaceAll("-", "");
 		try {
 			scanner = new Scanner(new URL("https://api.mojang.com/user/profiles/" + uuid + "/names").openStream());
-			names = scanner.nextLine();				        
+			names = scanner.nextLine();
 	        scanner.close();				        
 		} catch (IOException e) {}
 		JSONArray arr = new JSONArray(names);
