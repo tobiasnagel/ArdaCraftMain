@@ -1,13 +1,13 @@
 package me.tobi.acmain.events;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
 
 import me.tobi.acmain.ArdaCraft;
 import me.tobi.acmain.Methoden;
 import me.tobi.acmain.Rank;
+import me.tobi.acmain.Statics;
 import me.tobi.acmain.items.ItemHandler;
 import me.tobi.acmain.items.ItemType;
 import me.tobi.acmain.items.ItemType.WeaponType;
@@ -71,10 +71,6 @@ public class EvtHandler implements Listener{
 	
 	
 	//==============================================
-	public static boolean chatmuteActive = false;
-	public static List<Player> speerShooter = new ArrayList<Player>();	
-	public static List<Player> bigjumpmode = new ArrayList<Player>();	
-	public HashMap<String, Long> cooldowns = new HashMap<String, Long>();	
 	//==============================================
 	
 	@EventHandler
@@ -178,7 +174,7 @@ public class EvtHandler implements Listener{
 							ar.setShooter(event.getPlayer());
 							ar.setBounce(true);
 							ar.setVelocity(event.getPlayer().getLocation().getDirection().multiply(2));
-							speerShooter.add(event.getPlayer());
+							Statics.List.speerShooter.add(event.getPlayer());
 						}
 					}
 				}
@@ -250,18 +246,18 @@ public class EvtHandler implements Listener{
 					Player p = event.getPlayer();
 					if(Rasse.get(p) == Rasse.MAGIER) {
 						int cooldownTime = 1;
-						if (cooldowns.containsKey(p.getName())) {
-							long secondsLeft = ((cooldowns.get(p.getName()) / 1000) + cooldownTime)
+						if (Statics.List.cooldowns.containsKey(p.getName())) {
+							long secondsLeft = ((Statics.List.cooldowns.get(p.getName()) / 1000) + cooldownTime)
 									- (System.currentTimeMillis() / 1000);
 							if (secondsLeft > 0) {
 							}else {
-								cooldowns.put(p.getName(), System.currentTimeMillis());
+								Statics.List.cooldowns.put(p.getName(), System.currentTimeMillis());
 								WitherSkull ws = p.launchProjectile(WitherSkull.class);
 								ws.setShooter(p);
 								ws.setVelocity(p.getLocation().getDirection().multiply(1.8));
 							}
 						}else {
-							cooldowns.put(p.getName(), System.currentTimeMillis());
+							Statics.List.cooldowns.put(p.getName(), System.currentTimeMillis());
 							WitherSkull ws = p.launchProjectile(WitherSkull.class);
 							ws.setShooter(p);
 							ws.setVelocity(p.getLocation().getDirection().multiply(1.8));
@@ -302,9 +298,9 @@ public class EvtHandler implements Listener{
 				@Override
 				public void run() {
 					if(event.getEntity() instanceof Arrow){
-						if(speerShooter.contains(event.getEntity().getShooter())){
+						if(Statics.List.speerShooter.contains(event.getEntity().getShooter())){
 							event.getEntity().remove();
-							speerShooter.remove((Player)event.getEntity().getShooter());
+							Statics.List.speerShooter.remove((Player)event.getEntity().getShooter());
 						}
 					}					
 				}
@@ -398,9 +394,9 @@ public class EvtHandler implements Listener{
 					}
 				}
 				
-				if (speerShooter.contains(((Projectile) event.getDamager()).getShooter())) {
+				if (Statics.List.speerShooter.contains(((Projectile) event.getDamager()).getShooter())) {
 					event.setDamage(15.0);
-					speerShooter.remove((Player)((Projectile) event.getDamager()).getShooter());
+					Statics.List.speerShooter.remove((Player)((Projectile) event.getDamager()).getShooter());
 				}
 				
 				if(victim instanceof Player) {
@@ -450,10 +446,10 @@ public class EvtHandler implements Listener{
 		if(p.isOp()) {msg5.setText("§c: ");}else {msg5.setText("§r: ");}
 		Message msg6 = new Message(event.getMessage().replaceAll("&", "§"));
 		Message[] messages = {msg1, msg2, msg3, msg4, msg5, msg6};
-		if(ArdaCraft.muted.contains(p)) {
+		if(Statics.List.muted.contains(p)) {
 			ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du bist gemuted und kannst nicht schreiben!", p);
 		}else {
-			if(chatmuteActive) {
+			if(Statics.chatmuteActive) {
 				if(Rank.get(p) != Rank.SPIELER || Rasse.get(p) == Rasse.UNREGISTERED) {
 					ArdaCraft.getCraftLogger().chatJSON(messages);
 					ArdaCraft.getACServer().getConsoleSender().sendMessage("§bCHAT: §a" + p.getName() + "§c(§a" + p.getDisplayName()
@@ -670,7 +666,7 @@ public class EvtHandler implements Listener{
 	
 	@EventHandler
 	public void onMove(PlayerMoveEvent event) {
-		if(bigjumpmode.contains(event.getPlayer())){
+		if(Statics.List.bigjumpmode.contains(event.getPlayer())){
 			Player p = event.getPlayer();
 			if(p.getGameMode() != GameMode.CREATIVE) {
 				if(p.getLocation().subtract(0,  1, 0).getBlock().getType() != org.bukkit.Material.AIR) {
@@ -695,7 +691,7 @@ public class EvtHandler implements Listener{
 	
 	@EventHandler
 	public void onPlayerToggleFlight(PlayerToggleFlightEvent event) {
-		if(bigjumpmode.contains(event.getPlayer())){
+		if(Statics.List.bigjumpmode.contains(event.getPlayer())){
 			Player p = event.getPlayer();
 			if(p.getGameMode() == GameMode.CREATIVE)
 				return;
@@ -746,7 +742,7 @@ public class EvtHandler implements Listener{
 					ar.setShooter(event.getPlayer());
 					ar.setBounce(true);
 					ar.setVelocity(event.getPlayer().getLocation().getDirection().multiply(2));
-					speerShooter.add(event.getPlayer());
+					Statics.List.speerShooter.add(event.getPlayer());
 				}
 			}
 		}		

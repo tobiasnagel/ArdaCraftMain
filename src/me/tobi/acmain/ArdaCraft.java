@@ -39,7 +39,6 @@ public class ArdaCraft extends JavaPlugin{
 	private static ArdaCraft plugin;
 	private static CraftLogger logger;
 	private static FileConfiguration config;
-	public static List<Player> hidden = new ArrayList<Player>();
 	
 	@Override
 	public void onDisable() {}
@@ -78,9 +77,6 @@ public class ArdaCraft extends JavaPlugin{
 		scheduler.start();
 	}
 	
-	public static List<Player> muted = new ArrayList<Player>();
-	public static List<Player> colldown_thief = new ArrayList<Player>();
-	public static List<Player> shootmode = new ArrayList<Player>();
 
 	private void registerFiles() {
 		this.saveDefaultConfig();

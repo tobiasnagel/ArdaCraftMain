@@ -1,6 +1,7 @@
 package me.tobi.acmain.commands;
 
 import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Statics;
 import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Msg;
 
@@ -21,12 +22,12 @@ public class CmdMute implements CommandExecutor {
 					Player pl = Bukkit.getPlayer(args[0]);
 					if(pl.isOnline()){
 						// TODO newby check
-						if(ArdaCraft.muted.contains(pl)) {
-							ArdaCraft.muted.remove(pl);
+						if(Statics.List.muted.contains(pl)) {
+							Statics.List.muted.remove(pl);
 							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du hast " + pl.getDisplayName() + " entmuted!", p);
 							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du wurdest von  " + p.getDisplayName() + " entmuted!", pl);
 						}else {
-							ArdaCraft.muted.add(pl);
+							Statics.List.muted.add(pl);
 							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du hast " + pl.getName() + " gemuted!", p);
 							ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Du wurdest von  " + p.getDisplayName() + " gemuted!", pl);
 						}

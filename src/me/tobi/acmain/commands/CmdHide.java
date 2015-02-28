@@ -1,6 +1,7 @@
 package me.tobi.acmain.commands;
 
 import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Statics;
 import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Msg;
 
@@ -17,16 +18,16 @@ public class CmdHide implements CommandExecutor {
 		if(sender != null) {
 			Player p = (Player)sender;
 			if(p.isOp()) {
-				if(ArdaCraft.hidden.contains(p)) {
+				if(Statics.List.hidden.contains(p)) {
 					for(Player player : ArdaCraft.getACServer().getOnlinePlayers()) {
 						player.showPlayer(p);
-						ArdaCraft.hidden.remove(p);
+						Statics.List.hidden.remove(p);
 						p.sendMessage("Du bist nun sichtbar!");
 					}
 				}else {
 					for(Player player : ArdaCraft.getACServer().getOnlinePlayers()) {
 						player.hidePlayer(p);
-						ArdaCraft.hidden.add(p);
+						Statics.List.hidden.add(p);
 						p.sendMessage("Du bist nun unsichtbar!");
 					}
 				}

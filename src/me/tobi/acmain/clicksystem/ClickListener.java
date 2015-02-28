@@ -8,10 +8,7 @@ import java.util.List;
 import me.tobi.acmain.clicksystem.Click.ClickType;
 import me.tobi.acmain.items.ItemType;
 import me.tobi.acmain.rasse.Rasse;
-import net.minecraft.server.v1_8_R1.NBTTagCompound;
-import net.minecraft.server.v1_8_R1.PacketPlayOutTileEntityData;
 
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

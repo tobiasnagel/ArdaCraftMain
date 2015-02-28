@@ -1,6 +1,6 @@
 package me.tobi.acmain.commands;
 
-import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Statics;
 import me.tobi.acmain.message.Msg;
 
 import org.bukkit.command.Command;
@@ -15,11 +15,11 @@ public class CmdShoot implements CommandExecutor {
 		if(sender != null){
 			Player p = (Player) sender;
 			if (p.isOp()) {
-				if(ArdaCraft.shootmode.contains(p)) {
-					ArdaCraft.shootmode.remove(p);
+				if(Statics.List.shootmode.contains(p)) {
+					Statics.List.shootmode.remove(p);
 					p.sendMessage("ßaDu Schieﬂt nicht mehr!");
 				}else{
-					ArdaCraft.shootmode.add(p);
+					Statics.List.shootmode.add(p);
 					p.sendMessage("ßaDu Schieﬂt jetzt!");
 				}
 			} else { // No permission

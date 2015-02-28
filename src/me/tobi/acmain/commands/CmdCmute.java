@@ -1,7 +1,7 @@
 package me.tobi.acmain.commands;
 
 import me.tobi.acmain.ArdaCraft;
-import me.tobi.acmain.events.EvtHandler;
+import me.tobi.acmain.Statics;
 import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Msg;
 
@@ -17,10 +17,10 @@ public class CmdCmute implements CommandExecutor {
 		if(sender != null) {
 			Player p = (Player)sender;
 			if(p.isOp()) {
-				if (EvtHandler.chatmuteActive == true) {
-					EvtHandler.chatmuteActive = false;
+				if (Statics.chatmuteActive == true) {
+					Statics.chatmuteActive = false;
 				} else {
-					EvtHandler.chatmuteActive = true;
+					Statics.chatmuteActive = true;
 				}
 			}else { //No permission
 				ArdaCraft.getCraftLogger().logToChat(Level.WARN, Msg.COMMAND_NO_PERMISSION, p);

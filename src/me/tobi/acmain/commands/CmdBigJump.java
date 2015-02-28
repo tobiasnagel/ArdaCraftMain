@@ -1,6 +1,6 @@
 package me.tobi.acmain.commands;
 
-import me.tobi.acmain.events.EvtHandler;
+import me.tobi.acmain.Statics;
 import me.tobi.acmain.message.Msg;
 
 import org.bukkit.command.Command;
@@ -15,10 +15,10 @@ public class CmdBigJump implements CommandExecutor {
 		if(sender != null){
 			Player p = (Player) sender;
 			if (p.isOp()) {
-				if(EvtHandler.bigjumpmode.contains(p)) {
-					EvtHandler.bigjumpmode.remove(p);
+				if(Statics.List.bigjumpmode.contains(p)) {
+					Statics.List.bigjumpmode.remove(p);
 				}else{
-					EvtHandler.bigjumpmode.add(p);
+					Statics.List.bigjumpmode.add(p);
 				}
 			} else { // No permission
 				p.sendMessage(Msg.COMMAND_NO_PERMISSION);

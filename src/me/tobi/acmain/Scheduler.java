@@ -50,7 +50,7 @@ public class Scheduler {
 						}
 					}
 				}
-				for(Player p : ArdaCraft.shootmode) {
+				for(Player p : Statics.List.shootmode) {
 					Entity e = p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
 					p.setPassenger(e);
 					e.getLocation().setDirection(p.getLocation().getDirection());
