@@ -40,7 +40,7 @@ public class CmdReport implements CommandExecutor {
 					s("§6Namen: " + n(Methoden.getNames(p)));
 					s("§6Charaktername: §b" + p.getDisplayName());
 					sendWarnings(p);
-					sendNCP(p);
+					//sendNCP(p);
 					
 				}else {
 					s("Der Spieler muss online sein!");
@@ -121,6 +121,7 @@ public class CmdReport implements CommandExecutor {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	private void sendNCP(Player p) {
 		ViolationHistory history = ViolationHistory.getHistory(p, false);
 		if(history == null) {

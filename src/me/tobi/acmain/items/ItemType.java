@@ -194,7 +194,7 @@ public enum ItemType { //TODO add more ItemTypes
 		return null;
 	}
 	
-	public static ItemType getType(ItemStack item) {
+	public static ItemType get(ItemStack item) {
 		if(item == null) {
 			return ItemType.UNDEFINED;
 		}

@@ -58,13 +58,13 @@ public class ItemListener implements Listener{
 		ItemStack item = event.getPlayer().getItemInHand();
 		if(ItemHandler.isSpecialItem(item)) {
 			if(ItemHandler.isOldSpecialItem(item)) {
-				SpecialItem si = new SpecialItem(ItemType.getType(item));
+				SpecialItem si = new SpecialItem(ItemType.get(item));
 				event.getPlayer().getInventory().remove(item);
 				event.getPlayer().getInventory().addItem(si.getItem());
 				ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Dein Spezialitem wurde in ein neues Format übertragen!", event.getPlayer());
 				return;
 			}
-			ItemType type = ItemType.getType(item);
+			ItemType type = ItemType.get(item);
 			if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
 				if(type == ItemType.ARMBRUST) {
 					final Player p = event.getPlayer();
@@ -138,13 +138,13 @@ public class ItemListener implements Listener{
 			}
 		}
 		
-		if(ItemType.getType(event.getItem()) == ItemType.BOGEN) {
+		if(ItemType.get(event.getItem()) == ItemType.BOGEN) {
 			if(Rasse.get(event.getPlayer()) != Rasse.ELB) {
 				event.setCancelled(true);
 			}
 		}
 		if(ItemHandler.isSpecialItem(event.getItem())) {
-			if(ItemType.getType(event.getItem()).getMaterial() == Material.BLAZE_ROD) {
+			if(ItemType.get(event.getItem()).getMaterial() == Material.BLAZE_ROD) {
 				if(event.getItem().getType() == Material.STICK) {
 					event.getItem().setType(Material.BLAZE_ROD);
 				}
@@ -181,7 +181,7 @@ public class ItemListener implements Listener{
 			Entity victim = event.getEntity();
 			ItemStack item = damager.getItemInHand();
 			if(ItemHandler.isSpecialItem(item)) {
-				ItemType iType = ItemType.getType(item);
+				ItemType iType = ItemType.get(item);
 				WeaponType wType = iType.getWeaponType();
 				Rasse r = Rasse.get(damager);
 				if(wType == WeaponType.NAHKAMPF || wType == WeaponType.WITHERKOPF){
@@ -220,7 +220,7 @@ public class ItemListener implements Listener{
 				Entity victim = event.getEntity();
 				ItemStack item = damager.getItemInHand();
 				if(ItemHandler.isSpecialItem(item)) {
-					ItemType iType = ItemType.getType(item);
+					ItemType iType = ItemType.get(item);
 					WeaponType wType = iType.getWeaponType();
 					Rasse r = Rasse.get(damager);
 					if(wType == WeaponType.PFEIL || wType == WeaponType.WITHERKOPF || wType == WeaponType.FEUERBALL){				

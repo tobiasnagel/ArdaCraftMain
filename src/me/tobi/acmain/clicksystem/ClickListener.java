@@ -20,7 +20,7 @@ public class ClickListener implements Listener {
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {
 		final Player p = event.getPlayer();
-		if(Rasse.get(p) == Rasse.MAGIER && ItemType.getType(p.getInventory().getItemInHand()).equals(ItemType.STAB)) {
+		if(Rasse.get(p) == Rasse.MAGIER && ItemType.get(p.getInventory().getItemInHand()).equals(ItemType.STAB)) {
 			ClickType clickType = event.getAction()==Action.RIGHT_CLICK_AIR||event.getAction()==Action.RIGHT_CLICK_BLOCK?ClickType.RIGHTCLICK:ClickType.LEFTCLICK;
 			final ClickData playerData;
 			if(!Statics.List.clickdatas.containsKey(p)) {
