@@ -32,7 +32,6 @@ public class ControlPointManager {
 	public static void startScheduler() {
 		ArdaCraft.getACServer().getScheduler().scheduleSyncRepeatingTask(ArdaCraft.getPlugin(), new Runnable() {
 
-			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {

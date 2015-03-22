@@ -1,11 +1,11 @@
 package me.tobi.acmain.message;
 
 import me.tobi.acmain.ArdaCraft;
-import net.minecraft.server.v1_8_R1.ChatSerializer;
-import net.minecraft.server.v1_8_R1.IChatBaseComponent;
-import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
+import net.minecraft.server.v1_8_R2.IChatBaseComponent;
+import net.minecraft.server.v1_8_R2.IChatBaseComponent.ChatSerializer;
+import net.minecraft.server.v1_8_R2.PacketPlayOutChat;
 
-import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_8_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 public class CraftLogger {
@@ -26,15 +26,15 @@ public class CraftLogger {
 	
 	public void logToChat(Level level, String msg) {
 		if(level == Level.INFO) {
-			for(Player p : ArdaCraft.getOnlinePlayers()) {
+			for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 				p.sendMessage(PREFIX_INFO + msg);
 			}
 		}else if(level == Level.WARN) {
-			for(Player p : ArdaCraft.getOnlinePlayers()) {
+			for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 				p.sendMessage(PREFIX_WARN + msg);
 			}
 		}else if(level == Level.SEVERE) {
-			for(Player p : ArdaCraft.getOnlinePlayers()) {
+			for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 				p.sendMessage(PREFIX_SEVERE + msg);
 			}
 		}
@@ -96,7 +96,7 @@ public class CraftLogger {
 	}
 	
 	public void chatJSON(Message[] msg) {
-		for(Player p : ArdaCraft.getOnlinePlayers()) {
+		for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 			FancyMessage fmsg = new FancyMessage("");
 			for(Message m : msg) {
 				fmsg.then(m.getText() + "");

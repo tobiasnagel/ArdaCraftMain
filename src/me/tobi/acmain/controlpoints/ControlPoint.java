@@ -7,7 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_8_R1.block.CraftSign;
+import org.bukkit.craftbukkit.v1_8_R2.block.CraftSign;
 
 public class ControlPoint {
 	

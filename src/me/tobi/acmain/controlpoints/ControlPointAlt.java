@@ -44,7 +44,6 @@ public class ControlPointAlt {
 	
 	public static void startCheckScheduler(final ArdaCraft pl) {
 		pl.getServer().getScheduler().scheduleSyncRepeatingTask(pl, new Runnable() {
-			@SuppressWarnings("deprecation")
 			@Override
 			public void run() {
 				for(Location loc : getControlPoints(pl.getServer().getWorld("world"))) {

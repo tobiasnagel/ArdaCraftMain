@@ -1,8 +1,10 @@
 package me.tobi.acmain.message;
 
 import java.util.ArrayList;
+
 import org.bukkit.ChatColor;
-import org.bukkit.craftbukkit.libs.com.google.gson.stream.JsonWriter;
+
+import com.google.gson.stream.JsonWriter;
 
 final class MessagePart {
 

@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 
 public class CmdHide implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if(sender != null) {

@@ -210,7 +210,7 @@ public class Methoden {
 	
 	public static Player[] getPlayersAround(Location loc, int radius) {
 		int counter = 0;
-		for(Player pl : ArdaCraft.getOnlinePlayers()) {
+		for(Player pl : ArdaCraft.getACServer().getOnlinePlayers()) {
 			if(loc.getWorld() == pl.getWorld()) {
 				double dist = loc.distance(pl.getLocation());
 				if(dist < 10){
@@ -221,7 +221,7 @@ public class Methoden {
 		}
 		int c2 = 0;
 		Player[] pa = new Player[counter];
-		for(Player pl : ArdaCraft.getOnlinePlayers()) {
+		for(Player pl : ArdaCraft.getACServer().getOnlinePlayers()) {
 			if(loc.getWorld() == pl.getWorld()) {
 				double dist = loc.distance(pl.getLocation());
 				if(dist < 10){

@@ -32,7 +32,6 @@ import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class ArdaCraft extends JavaPlugin{
@@ -110,11 +109,6 @@ public class ArdaCraft extends JavaPlugin{
 	
 	public static FileConfiguration getJSONConfig(){
 		return config;
-	}
-	
-	@SuppressWarnings("deprecation")
-	public static Player[] getOnlinePlayers() {
-		return ArdaCraft.getACServer().getOnlinePlayers();
 	}
 	
 	

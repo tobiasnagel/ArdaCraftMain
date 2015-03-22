@@ -15,14 +15,14 @@ import me.tobi.acmain.message.Message;
 import me.tobi.acmain.message.Msg;
 import me.tobi.acmain.rasse.Rasse;
 import me.tobi.acmain.rasse.Rasse.Attitude;
-import net.minecraft.server.v1_8_R1.Enchantment;
+import net.minecraft.server.v1_8_R2.Enchantment;
 
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
-import org.bukkit.craftbukkit.v1_8_R1.inventory.CraftItemStack;
+import org.bukkit.craftbukkit.v1_8_R2.inventory.CraftItemStack;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
@@ -64,7 +64,7 @@ public class EvtHandler implements Listener{
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
 		ArdaCraft.getCraftLogger().logToChat(Level.INFO, Msg.EVENT_JOIN_WELCOME, p);
-		ArdaCraft.getCraftLogger().logToChat(Level.INFO, "§b§lZurzeit sind §a§l" + ArdaCraft.getOnlinePlayers().length + "§b§l von §c§l" + ArdaCraft.getACServer().getMaxPlayers() + "§b§l Spielern online", p);
+		ArdaCraft.getCraftLogger().logToChat(Level.INFO, "§b§lZurzeit sind §a§l" + ArdaCraft.getACServer().getOnlinePlayers().size() + "§b§l von §c§l" + ArdaCraft.getACServer().getMaxPlayers() + "§b§l Spielern online", p);
 		p.sendMessage("");
 		p.sendMessage("");
 		event.setJoinMessage("");
@@ -129,18 +129,18 @@ public class EvtHandler implements Listener{
 			int z = event.getClickedBlock().getLocation().getBlockZ();
 			if(event.getPlayer().getItemInHand().getType() == Material.LAVA_BUCKET||
 					event.getPlayer().getItemInHand().getType() == Material.LAVA) { //TODO not clickeed block but item in hand
-				for(Player p : ArdaCraft.getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cLAVA §6at §c" + x + " " + y + " " + z);
 				}
 			}
 			if(event.getPlayer().getItemInHand().getType() == Material.FLINT_AND_STEEL) {
-				for(Player p : ArdaCraft.getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cFIRE §6at §c" + x + " " + y + " " + z);
 				}
 			}
 			if(event.getPlayer().getItemInHand().getType() == Material.WATER_BUCKET ||
 					event.getPlayer().getItemInHand().getType() == Material.WATER) {
-				for(Player p : ArdaCraft.getOnlinePlayers()) {
+				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cWATER §6at §c" + x + " " + y + " " + z);
 				}
 			}
@@ -150,17 +150,13 @@ public class EvtHandler implements Listener{
 		
 	}
 	
-	
-	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onEntityExplode(EntityExplodeEvent event) {
 		event.blockList().clear();
 		if(event.getEntity().getType() == EntityType.WITHER_SKULL) {
 			WitherSkull skull = (WitherSkull) event.getEntity();
-			
-			if(((Projectile)skull).getShooter().getType() == EntityType.PLAYER) {
-				for(Player p : ArdaCraft.getOnlinePlayers()) {
+			if(((Projectile)skull).getShooter() instanceof Player) {
+				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 					if(p.getLocation().distance(skull.getLocation()) < 10) {
 						ItemType stab = ItemType.STAB;
 						p.damage(stab.getDamage() * Methoden.getDamageReduced(p));
@@ -369,7 +365,7 @@ public class EvtHandler implements Listener{
 					event.getAction() == InventoryAction.PICKUP_SOME) {
 				if(event.getSlotType() == SlotType.CRAFTING.RESULT) {
 					ItemStack i = event.getCurrentItem();
-					net.minecraft.server.v1_8_R1.ItemStack nmsItem = CraftItemStack.asNMSCopy(event.getCurrentItem());
+					net.minecraft.server.v1_8_R2.ItemStack nmsItem = CraftItemStack.asNMSCopy(event.getCurrentItem());
 					if(Enchantment.DURABILITY.canEnchant(nmsItem)) {
 						Random rnd = new Random();
 						if(rnd.nextInt(5) == 3) {
@@ -495,7 +491,6 @@ public class EvtHandler implements Listener{
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteractEntity(PlayerInteractEntityEvent event) {
 		if (event.getPlayer().getItemInHand().hasItemMeta()) {

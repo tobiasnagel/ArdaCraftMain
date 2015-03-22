@@ -17,7 +17,7 @@ public class CmdList implements CommandExecutor {
 			String online = "";
 			online += r.getName();
 		}
-		for(Player p : ArdaCraft.getOnlinePlayers()) {
+		for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 			
 		}
 		return true;

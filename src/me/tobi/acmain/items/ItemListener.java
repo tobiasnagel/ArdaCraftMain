@@ -27,7 +27,6 @@ import org.bukkit.potion.PotionEffectType;
 
 public class ItemListener implements Listener{
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onPlayerInteract(PlayerInteractEvent event) {	
 		if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
@@ -157,7 +156,6 @@ public class ItemListener implements Listener{
 		try{
 			ArdaCraft.getACServer().getScheduler().scheduleSyncDelayedTask(ArdaCraft.getPlugin(), new Runnable() {
 
-				@SuppressWarnings("deprecation")
 				@Override
 				public void run() {
 					if(event.getEntity() instanceof Arrow){
@@ -173,7 +171,6 @@ public class ItemListener implements Listener{
 		}
 	}
 	
-	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onEntityDamageByEntity(EntityDamageByEntityEvent event) {
 		if(event.getDamager() instanceof Player) {
