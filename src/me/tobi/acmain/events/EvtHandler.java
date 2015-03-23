@@ -172,9 +172,13 @@ public class EvtHandler implements Listener{
 			if(event.getEntity().getType() == EntityType.PLAYER) {
 				Player damager = (Player)event.getDamager();
 				Player attacked = (Player)event.getEntity();
-				if(Rasse.get(damager) == Rasse.get(attacked)) {
+				if(Rasse.get(damager) == Rasse.get(attacked) && !damager.isOp()) {
 					event.setCancelled(true);
 					ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du kannst deine eigene Rasse nicht angreifen!", damager);
+				}
+				if(attacked.getLocation().distance(attacked.getWorld().getSpawnLocation()) < 50) {
+					event.setCancelled(true);
+					ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Du kannst am Spawn nicht kämpfen!", damager);
 				}
 			}
 		}
@@ -218,7 +222,9 @@ public class EvtHandler implements Listener{
 					ArdaCraft.getCraftLogger().logToChat(Level.WARN, "Der Chat wurde deaktiviert! Du kannst momentan nciht schreiben!", p);
 				}
 			}else {
-				ArdaCraft.getCraftLogger().chatJSON(messages);
+				try{
+					ArdaCraft.getCraftLogger().chatJSON(messages);
+				}catch(Exception e) {}
 				ArdaCraft.getACServer().getConsoleSender().sendMessage("§bCHAT: §a" + p.getName() + "§c(§a" + p.getDisplayName()
 						 + "§c)§b: " + event.getMessage());
 			}

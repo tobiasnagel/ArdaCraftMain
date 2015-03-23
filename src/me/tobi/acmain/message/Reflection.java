@@ -19,7 +19,7 @@ public class Reflection {
 		try {
 			clazz = Class.forName(fullName);
 		} catch (Exception e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return clazz;
 	}
