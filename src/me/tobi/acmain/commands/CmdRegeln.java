@@ -34,6 +34,7 @@ public class CmdRegeln implements CommandExecutor {
 			sender.sendMessage("§a§l13: §6Nicht aus dem Spawn heraus angreifen");
 			sender.sendMessage("§a§l14: §6Kein Damage-/Killspamming");
 			sender.sendMessage("§a§l15: §6Kein Weitergeben von Wertvollen Sachen an schlechtere Spieler");
+			sender.sendMessage("§a§l16: §6Der Ring darf nicht zum Kämpfen benutzt werden!");
 		}else {
 			ArdaCraft.getCraftLogger().logToConsole(Level.WARN, Msg.COMMAND_PLAYER_ONLY);
 		}
