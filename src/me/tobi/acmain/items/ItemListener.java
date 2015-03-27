@@ -14,7 +14,6 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
-import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -111,7 +110,7 @@ public class ItemListener implements Listener{
 					}
 				}
 				
-				if (type == ItemType.STAB) {
+				/*if (type == ItemType.STAB) {
 					Player p = event.getPlayer();
 					if(Rasse.get(p) == Rasse.MAGIER) {
 						int cooldownTime = 1;
@@ -132,7 +131,7 @@ public class ItemListener implements Listener{
 							ws.setVelocity(p.getLocation().getDirection().multiply(1.8));
 						}
 					}
-				}
+				}*/
 				
 			}
 		}

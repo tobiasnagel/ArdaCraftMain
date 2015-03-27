@@ -9,7 +9,6 @@ import me.tobi.acmain.Methoden;
 import me.tobi.acmain.Rank;
 import me.tobi.acmain.Statics;
 import me.tobi.acmain.items.ItemHandler;
-import me.tobi.acmain.items.ItemType;
 import me.tobi.acmain.message.CraftLogger.Level;
 import me.tobi.acmain.message.Message;
 import me.tobi.acmain.message.Msg;
@@ -27,8 +26,6 @@ import org.bukkit.entity.Arrow;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
-import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -167,7 +164,7 @@ public class EvtHandler implements Listener{
 	@EventHandler
 	public void onEntityExplode(EntityExplodeEvent event) {
 		event.blockList().clear();
-		if(event.getEntity().getType() == EntityType.WITHER_SKULL) {
+		/*if(event.getEntity().getType() == EntityType.WITHER_SKULL) {
 			WitherSkull skull = (WitherSkull) event.getEntity();
 			if(((Projectile)skull).getShooter() instanceof Player) {
 				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
@@ -177,7 +174,7 @@ public class EvtHandler implements Listener{
 					}
 				}
 			}
-		}
+		}*/
 	}
 	
 	@EventHandler
