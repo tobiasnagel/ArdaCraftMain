@@ -30,6 +30,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.entity.WitherSkull;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.block.BlockPlaceEvent;
@@ -78,6 +79,14 @@ public class EvtHandler implements Listener{
 		Methoden.clearEffects(p);
 		String prefix = Rasse.get(p).getAttitude() == Attitude.BAD?"&7":"&2";
 		ArdaCraft.getACServer().dispatchCommand(ArdaCraft.getACServer().getConsoleSender(), "ne prefix " + p.getName() + " " + prefix);
+	}
+	
+	@EventHandler(priority = EventPriority.HIGHEST)
+	public void onPlayerInteract2(PlayerInteractEvent event) {
+		if(event.getPlayer().getItemInHand().getType() == Material.HOPPER_MINECART) {
+			event.setCancelled(true);
+			event.getPlayer().sendMessage("Du darfst aus Sicherheitsgründen keine Trichter-Minecarts platzieren!");
+		}
 	}
 	
 	@EventHandler
@@ -142,6 +151,11 @@ public class EvtHandler implements Listener{
 					event.getPlayer().getItemInHand().getType() == Material.WATER) {
 				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
 					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cWATER §6at §c" + x + " " + y + " " + z);
+				}
+			}
+			if(event.getPlayer().getItemInHand().getType() == Material.TNT) {
+				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+					if(p.isOp()) p.sendMessage("§b[" + event.getPlayer().getName() + "]" + "§6 placed §cTNT §6at §c" + x + " " + y + " " + z);
 				}
 			}
 			
