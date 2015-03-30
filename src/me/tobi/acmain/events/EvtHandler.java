@@ -14,6 +14,7 @@ import me.tobi.acmain.message.Message;
 import me.tobi.acmain.message.Msg;
 import me.tobi.acmain.rasse.Rasse;
 import me.tobi.acmain.rasse.Rasse.Attitude;
+import me.tobi.acmain.stadt.Stadt;
 import net.minecraft.server.v1_8_R2.Enchantment;
 
 import org.bukkit.ChatColor;
@@ -83,6 +84,16 @@ public class EvtHandler implements Listener{
 		if(event.getPlayer().getItemInHand().getType() == Material.HOPPER_MINECART) {
 			event.setCancelled(true);
 			event.getPlayer().sendMessage("Du darfst aus Sicherheitsgründen keine Trichter-Minecarts platzieren!");
+		}
+		if(event.getClickedBlock() != null) {
+			if(event.getClickedBlock().getType() == Material.SIGN_POST){
+				System.out.println("Sign click");
+				Sign sign = (Sign)event.getClickedBlock().getState();
+				if(sign.getLine(0).contains("Warp")) {
+					System.out.println("Line 0 contains Warp");
+					Stadt.openWarpMenu(event.getPlayer());
+				}
+			}
 		}
 	}
 	

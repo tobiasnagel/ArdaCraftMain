@@ -1,9 +1,18 @@
 package me.tobi.acmain.stadt;
 
-import me.tobi.acmain.ArdaCraft;
+import java.util.Arrays;
 
+import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Methoden;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 
 public enum Stadt {	
@@ -296,6 +305,20 @@ public enum Stadt {
 
 	public boolean isGood() {
 		return true;
+	}
+	
+	public static void openWarpMenu(Player p) {
+		Inventory inv = Bukkit.createInventory(p, 4*9, "Städte");
+		for(Stadt s : Stadt.values()) {
+			ItemStack i = new ItemStack(Material.BANNER,1, (short)11);
+			ItemMeta im = i.getItemMeta();
+			im.setDisplayName(Methoden.normalize(s.toString().toLowerCase()));
+			String gesinnung = s.isGood()?"Gut":"Böse";
+			im.setLore(Arrays.asList("Gründer: " + s.getOwner(), "Gesinnung: " + gesinnung));
+			i.setItemMeta(im);
+			inv.addItem(i);
+		}
+		p.openInventory(inv);
 	}
 	
 
