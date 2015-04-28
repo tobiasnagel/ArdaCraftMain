@@ -3,7 +3,6 @@ package me.tobi.acmain;
 import java.util.ArrayList;
 import java.util.List;
 
-import me.tobi.acmain.clicksystem.ClickListener;
 import me.tobi.acmain.commands.CmdAddWarp;
 import me.tobi.acmain.commands.CmdBigJump;
 import me.tobi.acmain.commands.CmdBoese;
@@ -18,6 +17,7 @@ import me.tobi.acmain.commands.CmdRegeln;
 import me.tobi.acmain.commands.CmdRegister;
 import me.tobi.acmain.commands.CmdReport;
 import me.tobi.acmain.commands.CmdRequest;
+import me.tobi.acmain.commands.CmdSec;
 import me.tobi.acmain.commands.CmdShoot;
 import me.tobi.acmain.commands.CmdSpawn;
 import me.tobi.acmain.commands.CmdStadt;
@@ -27,6 +27,7 @@ import me.tobi.acmain.items.ItemHandler;
 import me.tobi.acmain.items.ItemListener;
 import me.tobi.acmain.message.CraftLogger;
 import me.tobi.acmain.message.Msg;
+import me.tobi.acmain.security.SecurityCondition;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -39,6 +40,7 @@ public class ArdaCraft extends JavaPlugin{
 	private static ArdaCraft plugin;
 	private static CraftLogger logger;
 	private static FileConfiguration config;
+	private static SecurityCondition condition;
 	
 	@Override
 	public void onDisable() {}
@@ -49,9 +51,10 @@ public class ArdaCraft extends JavaPlugin{
 		ItemHandler.registerItems();
 		registerFiles();
 		config = this.getConfig();
+		condition = new SecurityCondition();
 		Bukkit.getServer().getPluginManager().registerEvents(new EvtHandler(), this);
-		Bukkit.getServer().getPluginManager().registerEvents(new ClickListener(), this);
 		Bukkit.getServer().getPluginManager().registerEvents(new ItemListener(), this);
+		getCommand("sec").setExecutor(new CmdSec());
 		getCommand("register").setExecutor(new CmdRegister());
 		getCommand("checkinaktive").setExecutor(new CmdCheckinaktive());
 		getCommand("request").setExecutor(new CmdRequest());
@@ -109,6 +112,11 @@ public class ArdaCraft extends JavaPlugin{
 	
 	public static FileConfiguration getJSONConfig(){
 		return config;
+	}
+
+
+	public static SecurityCondition getSecurityCondition() {
+		return condition;
 	}
 	
 	

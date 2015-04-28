@@ -4,6 +4,7 @@ import java.util.List;
 
 import me.tobi.acmain.Methoden;
 import me.tobi.acmain.ArdaCraft;
+import me.tobi.acmain.Rank;
 import me.tobi.acmain.message.Message;
 import me.tobi.acmain.rasse.Rasse;
 
@@ -66,7 +67,7 @@ public class CharakterRequest {
 	
 	public void sendToOperators() {
 		for(final Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
-			if(p.isOp()){
+			if(Rank.get(p) == Rank.MOD || Rank.get(p) == Rank.ADMIN){
 				String s = ("§4=====================================================");
 				Message m1 = new Message("§6[§aCharakterrequest§c " + requester.getName() + "§6]§b  §d(§6[§a" + Methoden.normalize(rasse.toString().toLowerCase()) + "§6] §c" + charakter + "§d)§r ");
 				Message accept = new Message("§6[§aANNEHMEN§6]  ");

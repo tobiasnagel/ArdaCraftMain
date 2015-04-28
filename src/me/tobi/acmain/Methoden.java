@@ -42,7 +42,7 @@ public class Methoden {
 		try {
 			scanner = new Scanner(new URL("https://api.mojang.com/user/profiles/" + uuid + "/names").openStream());
 			names = scanner.nextLine();
-	        scanner.close();				        
+	        scanner.close();
 		} catch (IOException e) {}
 		JSONArray arr = new JSONArray(names);
 		List<String> namen = new ArrayList<String>();

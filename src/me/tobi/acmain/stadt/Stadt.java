@@ -32,7 +32,7 @@ public enum Stadt {
 		@Override
 		public Location getLoc() {return new Location(Stadt.w, 1685, 80, 820);}
 		@Override
-		public String getOwner() {return "chrito_miner";}
+		public String getOwner() {return "ToppseDev";}
 		@Override
 		public boolean isGood() {return true;}
 	}, CARNDUM{
@@ -77,7 +77,7 @@ public enum Stadt {
 		@Override
 		public Location getLoc() {return new Location(Stadt.w, 969, 64, 3280);}
 		@Override
-		public String getOwner() {return "chrito_miner";}
+		public String getOwner() {return "ToppseDev";}
 		@Override
 		public boolean isGood() {return true;}
 	}, EDORAS{

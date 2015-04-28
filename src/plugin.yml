@@ -58,3 +58,6 @@ commands:
   report:
     usage: /report
     description: ArdaCraft Team Befehl
+  sec:
+    usage: /sec [addtemp|undoWE|disable|setSecCon]
+    description: ArdaCraft Team Befehl

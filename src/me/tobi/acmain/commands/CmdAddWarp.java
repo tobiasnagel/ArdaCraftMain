@@ -33,6 +33,9 @@ public class CmdAddWarp implements CommandExecutor {
 					sign.setLine(2, args[1]);
 					sign.update();
 					ArdaCraft.getCraftLogger().logToChat(Level.INFO, "Warppunkt " + args[0] + "(" + args[1] + ") erstellt!", p);
+				
+					
+				
 				}else {//wrong usage
 					ArdaCraft.getCraftLogger().logToChat(Level.WARN, Msg.COMMAND_ADDWARP_USAGE, p);
 				}

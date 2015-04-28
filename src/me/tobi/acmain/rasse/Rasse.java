@@ -10,7 +10,7 @@ import org.bukkit.potion.PotionEffectType;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
-public enum Rasse {
+public enum Rasse { //TODO add getAttitude
 	
 	ORK{
 		@Override
@@ -264,7 +264,7 @@ public enum Rasse {
 	}
 	
 	public enum Attitude {
-		GOOD, BAD, NEUTRAL, UNKNOWN;
+		GOOD, BAD, NEUTRAL, UNKNOWN; //TODO braucht man beide???
 	}
 	
 	public static Rasse get(Player p) {

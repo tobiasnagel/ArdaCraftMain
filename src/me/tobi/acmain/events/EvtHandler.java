@@ -1,6 +1,7 @@
 package me.tobi.acmain.events;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -14,9 +15,11 @@ import me.tobi.acmain.message.Message;
 import me.tobi.acmain.message.Msg;
 import me.tobi.acmain.rasse.Rasse;
 import me.tobi.acmain.rasse.Rasse.Attitude;
+import me.tobi.acmain.security.CommandBlacklist;
 import me.tobi.acmain.stadt.Stadt;
 import net.minecraft.server.v1_8_R2.Enchantment;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
@@ -42,6 +45,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerGameModeChangeEvent;
 import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
@@ -62,6 +66,9 @@ public class EvtHandler implements Listener{
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
+		if(!ArdaCraft.getSecurityCondition().isAllowed(p)) {
+			p.kickPlayer("Aufgrund der aktuellen Sicherheitsbeschränkungen kannst du leider nicht spielen!");
+		}
 		ArdaCraft.getCraftLogger().logToChat(Level.INFO, Msg.EVENT_JOIN_WELCOME, p);
 		ArdaCraft.getCraftLogger().logToChat(Level.INFO, "§b§lZurzeit sind §a§l" + ArdaCraft.getACServer().getOnlinePlayers().size() + "§b§l von §c§l" + ArdaCraft.getACServer().getMaxPlayers() + "§b§l Spielern online", p);
 		p.sendMessage("");
@@ -78,6 +85,23 @@ public class EvtHandler implements Listener{
 		String prefix = Rasse.get(p).getAttitude() == Attitude.BAD?"&7":"&2";
 		ArdaCraft.getACServer().dispatchCommand(ArdaCraft.getACServer().getConsoleSender(), "ne prefix " + p.getName() + " " + prefix);
 	}
+	
+	@EventHandler
+	public void onPlayerPerforCommand(PlayerCommandPreprocessEvent event) {
+		for(String[] aliases: Bukkit.getServer().getCommandAliases().values()) {
+			for(String s: aliases) {
+				if(event.getMessage().equalsIgnoreCase(s)) {
+					if(CommandBlacklist.getList().contains(s)) {
+						event.setCancelled(true);
+					}
+				}
+			}
+		}
+		System.out.println("CommandPreProcess: " + event.getMessage());
+		System.out.println("Aliases: " + Arrays.toString(Bukkit.getServer().getCommandAliases().get(event.getMessage())));
+		
+	}
+	
 	
 	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onPlayerInteract2(PlayerInteractEvent event) {

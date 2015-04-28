@@ -14,7 +14,7 @@ public class Menu {
 	Inventory menu;
 	
 	public Menu(String title, int zeilen) {
-		Player p = Bukkit.getPlayer("BOT");
+		Player p = Bukkit.getPlayer("BOT"); //TODO FUNKTIONIERT DAS ENRSTHAFT???
 		menu = Bukkit.createInventory(p, zeilen*9, title);
 	}
 	

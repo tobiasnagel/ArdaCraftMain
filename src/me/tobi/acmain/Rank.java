@@ -9,7 +9,6 @@ import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 public enum Rank {
-	
 	CMOD{
 		@Override
 		public List<String> getPermissions() {
@@ -42,13 +41,6 @@ public enum Rank {
 			permissions.add("*");
 			return permissions;
 		}
-	}, OWNER{
-		@Override
-		public List<String> getPermissions() {
-			List<String> permissions = new ArrayList<String>();
-			permissions.add("*");
-			return permissions;
-		}
 	}, SPIELER{
 		@Override
 		public List<String> getPermissions() {
@@ -64,21 +56,17 @@ public enum Rank {
 	
 	public static Rank get(Player p) {
 		PermissionUser user = PermissionsEx.getUser(p);
-		if(user.getSuffix() == null) {
-			
-			return Rank.SPIELER;
+		if(p.getUniqueId().toString() == "ae99dd1d-3bd9-4d45-800b-b9676901d823" || p.getUniqueId().toString() == "a4d4dfcf-1622-452c-9022-c80d445c68b7") {
+			return Rank.ADMIN;
 		}
 		if(user.getSuffix().contains("C-Mod")) {
-			return Rank.SPIELER;
+			return Rank.CMOD;
 		}
 		if(user.getSuffix().contains("Mod")) {
 			return Rank.MOD;
 		}
-		if(user.getSuffix().contains("Admin")) {
-			return Rank.ADMIN;
-		}
-		if(user.getSuffix().contains("Owner")) {
-			return Rank.OWNER;
+		if(user.getSuffix() == null) {
+			return Rank.SPIELER;
 		}
 		return null;
 	}

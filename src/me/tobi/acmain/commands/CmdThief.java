@@ -25,7 +25,7 @@ public class CmdThief implements CommandExecutor {
 			if(Rasse.get(p) == Rasse.HOBBIT) {
 				boolean success = false;
 				ItemStack item = new ItemStack(Material.AIR);
-				if(!Statics.List.colldown_thief.contains(p)) {
+				if(!Statics.List.cooldown_thief.contains(p)) {
 					Random rnd = new Random();
 					Object o = Methoden.pickRandomOf(Methoden.getPlayersAround(p.getLocation(), 10));
 					final Player stolen;
@@ -62,7 +62,7 @@ public class CmdThief implements CommandExecutor {
 						p.getInventory().addItem(item);
 						success = true;						
 						p.sendMessage("§cDu hast " + stolen.getDisplayName() + " " + Methoden.normalize(item.getType().toString().toLowerCase()) + "§c geklaut!");
-						Statics.List.colldown_thief.add(p);
+						Statics.List.cooldown_thief.add(p);
 					}else {						
 						p.sendMessage("§cMist! Du wurdest erwischt! Hau besser schnell ab!");
 					}
@@ -71,7 +71,7 @@ public class CmdThief implements CommandExecutor {
 					ArdaCraft.getACServer().getScheduler().scheduleSyncDelayedTask(ArdaCraft.getPlugin(), new Runnable() {
 						@Override
 						public void run() {
-							Statics.List.colldown_thief.remove(p);
+							Statics.List.cooldown_thief.remove(p);
 							if(suc) 
 								stolen.sendMessage("§c" + p.getDisplayName() + "§c hat dir " + Methoden.normalize(it.getType().toString().toLowerCase()) + "§c geklaut!");
 							if(!suc)

@@ -3,6 +3,7 @@ package me.tobi.acmain;
 import me.tobi.acmain.rasse.Rasse;
 
 import org.bukkit.Effect;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Guardian;
@@ -54,9 +55,15 @@ public class Scheduler {
 					Entity e = p.getWorld().spawnEntity(p.getLocation(), EntityType.GUARDIAN);
 					p.setPassenger(e);
 					e.getLocation().setDirection(p.getLocation().getDirection());
-					Guardian g = (Guardian) e;				
+					Guardian g = (Guardian) e;
 					g.setTarget(Methoden.getNearestPlayer(p.getLocation(), 20));
 					g.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 1));
+				}
+				for(Player p : ArdaCraft.getACServer().getOnlinePlayers()) {
+					if(!p.hasPermission("essentials.fly") && p.isFlying()) {
+						p.teleport(new Location(p.getWorld(), p.getLocation().getX(), p.getWorld().getHighestBlockAt(p.getLocation()).getY(), p.getLocation().getZ()));
+						p.setFlying(false);
+					}
 				}
 			}
 			
